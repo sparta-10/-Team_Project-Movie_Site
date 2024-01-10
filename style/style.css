@@ -27,12 +27,10 @@ header {
 #myTitle {
   height: 400px;
   color: white;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   background-image: url("https://img.freepik.com/premium-photo/grain-film-scratches-dust-texture_548821-55648.jpg?w=996");
   background-position: center;
   background-size: cover;
@@ -65,18 +63,17 @@ main {
   gap: 12px;
   margin-top: 100px;
   padding: 25px;
+  position: relative;
 }
 
 .movieCard {
   display: flex;
   flex-direction: column;
-
-  height: 1000px;
+  height: 700px;
   border: 1px solid #ddddddad;
   border-radius: 8px;
   background-color: var(--bg-movieCard-color);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
-
   overflow: hidden;
   margin-bottom: 70px;
 }
@@ -107,4 +104,22 @@ main {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+#modalbtn {
+  height: 50px;
+  width: 300px;
+}
+#closebtn {
+  width: 30px;
+  height: 30px;
+}
+#modal {
+  position: absolute;
+  background-color: aqua;
+  display: none;
+  width: 90%;
+  height: 1000px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }

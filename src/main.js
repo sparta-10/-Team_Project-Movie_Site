@@ -1,4 +1,4 @@
-import { movies, fetchMovies, makeMovieCards, hideMovies, clickCard, openclose, scrollToTop } from "./movie.js";
+import { movies, fetchMovies, makeMovieCards, hideMovies, openclose, scrollToTop } from "./movie.js";
 import { searchMovies } from "./search.js";
 
 // 페이지 로드 시 fetchMovies 함수 호출
