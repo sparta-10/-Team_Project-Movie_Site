@@ -1,5 +1,10 @@
 import { movies, fetchMovies, makeMovieCards, hideMovies, openClose, scrollToTop } from "./movie.js";
 import { searchMovies } from "./search.js";
+import { submitReview, displayReviews } from "./review.js";
+
+// 클릭시 submitReview 함수호출
+document.getElementById('submitReviewButton').addEventListener('click', submitReview);
+
 
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);

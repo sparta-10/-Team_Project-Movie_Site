@@ -28,10 +28,25 @@
       </header>
       <main class="modal-main">
         <div class="movie-info"></div>
-        <div class="movie-poster"></div>
+        <div class="movie-poster">
+
+        </div>
       </main>
       <footer>
-        
+          <form id="reviewForm">
+            <label for="username">작성자:</label>
+            <input type="text" id="username" required>
+            
+            <label for="review">리뷰:</label>
+            <textarea id="review" required></textarea>
+            
+            <label for="password">확인 비밀번호:</label>
+            <input type="password" id="password" required>
+            
+            <button type="button" id="submitReviewButton">리뷰 작성</button>
+            </form>
+            
+            <ul id="reviewList"></ul>
       </footer>
     </div>
     <header>
