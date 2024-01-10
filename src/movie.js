@@ -33,8 +33,8 @@ export function makeMovieCards(movies) {
 
   // 개봉일 날짜 형식 바꾸는 함수
   function transformDateFormat(date) {
-    const [year, month, day] = date.split("-");
-    return `${year}.${month}.${day}`;
+    const splitDate = date.split("-");
+    return splitDate.join(".");
   }
 
   movies.forEach((movie) => {
