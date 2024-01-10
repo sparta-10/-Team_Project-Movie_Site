@@ -1,5 +1,20 @@
-  // submitReview 함수를 window에 등록
-  window.submitReview = function () {
+//리뷰 저장하고 내용 표시하기
+export function displayReviews() {
+  const reviewListElement = document.getElementById('reviewList');
+  reviewListElement.innerHTML = '';
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith('review_')) {
+      const reviewData = JSON.parse(localStorage.getItem(key));
+      const listItem = document.createElement('li');
+      listItem.textContent = `작성자: ${reviewData.username}, 리뷰: ${reviewData.review}`;
+      reviewListElement.appendChild(listItem);
+    }
+  }
+}
+
+  export function submitReview () {
     const username = document.getElementById('username').value;
     const review = document.getElementById('review').value;
     const password = document.getElementById('password').value;
@@ -42,34 +57,6 @@
     displayReviews();
   };
 
-  function displayReviews() {
-    const reviewListElement = document.getElementById('reviewList');
-    reviewListElement.innerHTML = '';
 
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key.startsWith('review_')) {
-        const reviewData = JSON.parse(localStorage.getItem(key));
-        const listItem = document.createElement('li');
-        listItem.textContent = `작성자: ${reviewData.username}, 리뷰: ${reviewData.review}`;
-        reviewListElement.appendChild(listItem);
-      }
-    }
-  }
 
-// 나중에 모달창에 넣기.뼈대 부분.
-// <form id="reviewForm">
-// <label for="username">작성자:</label>
-// <input type="text" id="username" required>
-
-// <label for="review">리뷰:</label>
-// <textarea id="review" required></textarea>
-
-// <label for="password">확인 비밀번호:</label>
-// <input type="password" id="password" required>
-
-// <button type="button" onclick="submitReview()">리뷰 작성</button>
-// </form>
-
-// <ul id="reviewList"></ul>
 
