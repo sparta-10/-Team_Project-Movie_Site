@@ -1,0 +1,110 @@
+:root {
+  --bg-body-color: gainsboro;
+  --bg-header-color: gainsboro;
+  --bg-main-color: gainsboro;
+  --bg-movieCard-color: rgba(248, 248, 248, 0.877);
+}
+
+* {
+  font-family: "Noto Serif KR", serif;
+}
+
+body {
+  background-color: var(--bg-body-color);
+}
+
+header {
+  background-color: var(--bg-header-color);
+}
+
+#title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 40pt;
+  font: bold;
+}
+
+#myTitle {
+  height: 400px;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("https://img.freepik.com/premium-photo/grain-film-scratches-dust-texture_548821-55648.jpg?w=996");
+  background-position: center;
+  background-size: cover;
+}
+
+#searchBar {
+  float: right;
+  margin-top: 15px;
+}
+
+#searchMovie {
+  color: black;
+}
+
+#searchInput {
+  width: 300px;
+}
+
+#searchBtn {
+  width: 70px;
+}
+
+main {
+  background-color: var(--bg-main-color);
+}
+
+.movieCardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 100px;
+  padding: 25px;
+}
+
+.movieCard {
+  display: flex;
+  flex-direction: column;
+
+  height: 1000px;
+  border: 1px solid #ddddddad;
+  border-radius: 8px;
+  background-color: var(--bg-movieCard-color);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
+
+  overflow: hidden;
+  margin-bottom: 70px;
+}
+
+.movieCard img {
+  padding: 15px;
+  height: 485px;
+  width: 100%;
+}
+
+.movieCard h2 {
+  margin-top: 15px;
+  margin-bottom: 13px;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.movieCard p {
+  margin-left: 15px;
+  margin-right: 20px;
+}
+
+.movieOverview {
+  height: 370px;
+}
+
+#toTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
