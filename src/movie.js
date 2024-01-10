@@ -93,7 +93,7 @@ export function clickCard({ target, cardList }) {
 }
 
 // 영화 목록 보기 버튼 클릭 시 토글하는 함수
-export function openclose() {
+export function openClose() {
   let cards = document.querySelectorAll(".movieCard");
 
   // none이면 block으로, block이면 none으로
