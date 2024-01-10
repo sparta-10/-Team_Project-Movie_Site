@@ -59,7 +59,7 @@ export function makeMovieCards(movies) {
             <p class="movieReleasedDate">${transformDateFormat(movie.release_date)}</p>
             <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
-            <p class="movieRate"><span class="star">⭐${movie.vote_average.toFixed(1)}</span></p>
+            <p class="movieRate"><span class="star">⭐ ${movie.vote_average.toFixed(1)}</span></p>
             </li>`;
 
     moviesBox.insertAdjacentHTML("beforeend", template);
