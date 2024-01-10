@@ -128,6 +128,7 @@ main {
 
 .poster:hover {
   background-color: rgba(31, 30, 30, 0.671);
+  filter: brightness(0.8);
 }
 
 .movieOverview:hover {
