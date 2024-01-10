@@ -8,12 +8,19 @@ const options = {
 };
 
 export let movies = [];
+export let genres = [];
 
 export function fetchMovies() {
-  fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", options)
-    .then((response) => response.json())
-    .then((response) => {
-      movies = response.results; // 영화 데이터를 배열에 저장
+  Promise.all([
+    fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", options),
+    fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko", options)
+  ])
+
+    .then((responses) => Promise.all(responses.map((response) => response.json())))
+    .then(([moviesResponse, genresResponse]) => {
+      movies = moviesResponse.results; // 영화 데이터를 배열에 저장
+      genres = genresResponse.genres; // 장르 데이터를 배열에 저장
+
       makeMovieCards(movies); // 영화 카드 만들기 함수 호출
       hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
     })
@@ -25,10 +32,25 @@ export function makeMovieCards(movies) {
   const moviesBox = document.getElementById("movieCardList");
 
   movies.forEach((movie) => {
+    // 영화의 장르 Id 가져오기
+    // || [] : movie.genre_ids가 null 또는 undefined인 경우,
+    // genreIds가 빈 배열([])인 null 또는 undefined로 설정되어 에러 발생하는 것 방지
+    const genreIds = movie.genre_ids || [];
+
+    // 장르 Id에 해당하는 장르 이름 가져오기
+    const movieGenres = genreIds.map((genreId) => {
+      const genre = genres.find((g) => g.id === genreId);
+      return genre ? genre.name : ""; // 해당하는 장르가 없으면 빈 문자열 반환
+    });
+
+    // 장르 이름을 쉼표로 구분하여 표시
+    const genreList = movieGenres.join(", ");
+
     const template = `
             <li id=${movie.id} class="movieCard">
             <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt=""/>
             <h2 class="movieTitle">${movie.title}</h2>
+            <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
             <p class="movieRate"><span class="star">⭐${movie.vote_average.toFixed(1)}</span></p>
             </li>`;
