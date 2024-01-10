@@ -53,6 +53,7 @@ export function makeMovieCards(movies) {
     const genreList = movieGenres.join(", ");
 
     const template = `
+            <div id="movie">            
             <li id=${movie.id} class="movieCard">
             <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt=""/>
             <h2 class="movieTitle">${movie.title}</h2>
@@ -60,9 +61,27 @@ export function makeMovieCards(movies) {
             <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
             <p class="movieRate"><span class="star">⭐ ${movie.vote_average.toFixed(1)}</span></p>
-            </li>`;
+            <button id="modalbtn" class="modalBtn">자세히보기</button>
+            </li>
+            </div>
+            `;
 
     moviesBox.insertAdjacentHTML("beforeend", template);
+  });
+
+  const modal = document.getElementById("modal");
+  const modalBtn = document.querySelectorAll(".modalBtn");
+  modalBtn.forEach((a) => {
+    a.addEventListener("click", () => {
+      modal.style.display = "block";
+      openclose();
+    });
+  });
+
+  const closebtn = document.getElementById("closebtn");
+  closebtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    openclose();
   });
 }
 
@@ -80,17 +99,17 @@ export function hideMovies() {
 
 // alert 창 띄우는 함수
 // 이벤트 위임: 하위요소에서 발생한 이벤트를 상위요소에서 처리
-export function clickCard({ target, cardList }) {
-  // 카드 외 영역 클릭 시 무시
-  if (target === cardList) return;
+// export function clickCard({ target, cardList }) {
+//   // 카드 외 영역 클릭 시 무시
+//   if (target === cardList) return;
 
-  if (target.matches(".movieCard")) {
-    alert(`영화 id: ${target.id}`);
-  } else {
-    // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
-    alert(`영화 id: ${target.parentNode.id}`);
-  }
-}
+//   if (target.matches(".movieCard")) {
+//     alert(`영화 id: ${target.id}`);
+//   } else {
+//     // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
+//     alert(`영화 id: ${target.parentNode.id}`);
+//   }
+// }
 
 // 영화 목록 보기 버튼 클릭 시 토글하는 함수
 export function openClose() {
