@@ -31,6 +31,12 @@ export function fetchMovies() {
 export function makeMovieCards(movies) {
   const moviesBox = document.getElementById("movieCardList");
 
+  // 개봉일 날짜 형식 바꾸는 함수
+  function transformDateFormat(date) {
+    const [year, month, day] = date.split("-");
+    return `${year}.${month}.${day}`;
+  }
+
   movies.forEach((movie) => {
     // 영화의 장르 Id 가져오기
     // || [] : movie.genre_ids가 null 또는 undefined인 경우,
@@ -50,6 +56,7 @@ export function makeMovieCards(movies) {
             <li id=${movie.id} class="movieCard">
             <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt=""/>
             <h2 class="movieTitle">${movie.title}</h2>
+            <p class="movieReleasedDate">${transformDateFormat(movie.release_date)}</p>
             <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
             <p class="movieRate"><span class="star">⭐${movie.vote_average.toFixed(1)}</span></p>
