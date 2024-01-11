@@ -30,7 +30,9 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+#index-link {
+  text-decoration: none;
+}
 #title {
   margin: 30px auto 30px auto;
   font-size: 90px;
