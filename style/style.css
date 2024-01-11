@@ -206,6 +206,18 @@ body {
   margin-bottom: 10px;
 }
 
+.movieCard > .movieGenre {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.movieCard > .movieRate {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
 .movieOverview {
   position: absolute; /*가장 가까운 위치에 있는 조상 요소를 기준으로 배치*/
   padding-top: 25px;
