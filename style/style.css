@@ -75,7 +75,7 @@ body {
 }
 
 #title {
-  margin: 0 auto 30px auto;
+  margin: 60px auto 20px auto;
   font-size: 75px;
   letter-spacing: -1px;
   color: #e8344e;
@@ -84,10 +84,13 @@ body {
 }
 
 #toggleBtn {
-  width: 150px;
   height: 40px;
-  font-size: 20px;
-  margin-top: 20px;
+  width: 130px;
+  color: white;
+  background-color: rgb(255, 190, 201);
+  border-width: 1px;
+  border-color: rgb(255, 105, 130);
+  border-radius: 5px;
 }
 
 #searchMovie {
@@ -100,6 +103,11 @@ body {
 
 #searchBtn {
   width: 70px;
+  color: rgb(255, 0, 43);
+  background-color: rgb(248, 222, 226);
+  border-width: 1px;
+  border-color: rgb(255, 105, 130);
+  border-radius: 5px;
 }
 
 .movieCardList {
@@ -198,6 +206,13 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  height: 38px;
+  width: 50px;
+  color: rgb(255, 0, 43);
+  background-color: rgb(248, 222, 226);
+  border-width: 1px;
+  border-color: rgb(255, 105, 130);
+  border-radius: 5px;
 }
 
 .form-control,

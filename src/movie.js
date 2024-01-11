@@ -89,9 +89,7 @@ export function makeMovieCards(movies) {
 export function hideMovies() {
   let cards = document.querySelectorAll(".movieCard");
 
-  cards.forEach((card) => {
-    card.style.display = "none";
-  });
+  cards.forEach((card) => (card.style.display = "none"));
 
   // 토글 되어도 배경색 유지 위함
   document.body.style.backgroundColor = "gainsboro";

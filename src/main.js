@@ -3,8 +3,7 @@ import { searchMovies } from "./search.js";
 import { submitReview, displayReviews } from "./review.js";
 
 // 클릭시 submitReview 함수호출
-document.getElementById('submitReviewButton').addEventListener('click', submitReview);
-
+document.getElementById("submitReviewButton").addEventListener("click", submitReview);
 
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 hideMovies();
 
 // 클릭 이벤트 발생 시 openClose 함수 호출
-document.getElementById("togglehBtn").addEventListener("click", () => {
+document.getElementById("toggleBtn").addEventListener("click", () => {
   openClose();
 });
 
