@@ -1,26 +1,19 @@
-/* :root {
-  --bg-body-color: gainsboro;
-  --bg-header-color: gainsboro;
-  --bg-main-color: gainsboro;
-  --bg-movieCard-color: rgba(248, 248, 248, 0.877);
-} */
-
 @font-face {
-  font-family: 'Handletter';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff') format('woff');
+  font-family: "Handletter";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 * {
-  font-family: 'Pretendard-Regular';
+  font-family: "Pretendard-Regular";
 }
 
 body {
@@ -36,10 +29,12 @@ body {
   height: 100vh;
   z-index: 5;
 }
+
 #modalbtn {
   height: 50px;
   width: 300px;
 }
+
 #closebtn {
   width: 30px;
   height: 30px;
@@ -47,41 +42,67 @@ body {
   right: 10px;
   top: 10px;
 }
+
 .modal-header {
   background-color: #000000;
 }
+
 .modal-header h1 {
   width: 100%;
   text-align: center;
   color: rgb(234, 234, 234);
 }
+
 #modal .modal-main {
   width: 100%;
   height: 100px;
   padding: 0 50px;
   background-color: cornflowerblue;
 }
-#modal .modal-main .movie-info {
-}
-
-
-#title {
-  margin: 0 auto 30px auto;
-  font-size: 64px;
-  letter-spacing: -1px;
-  color: #e8344e;
-  font: bold;
-  font-family: 'Handletter' !important;
-}
 
 #myTitle {
-  margin: auto;
-  width: 1080px;
+  margin: 50px auto 50px auto;
+  width: 100%;
+  max-width: 1080px; /* 큰 화면을 위한 최대 너비 설정 */
   height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#title {
+  margin: 30px auto 30px auto;
+  font-size: 90px;
+  letter-spacing: -1px;
+  color: #e8344e;
+  font: bold;
+  font-family: "Handletter" !important;
+}
+
+#twoBtn {
+  display: flex;
+  flex-direction: row;
+  width: 260px;
+  height: 40px;
+}
+
+#toggleBtn {
+  height: 40px;
+  width: 130px;
+  background-color: transparent;
+  color: black;
+  border-color: #a3a1a1;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-left: 23px;
+  margin-right: 30px;
+}
+
+#toggleBtn:hover {
+  letter-spacing: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 #searchMovie {
@@ -94,19 +115,38 @@ body {
 
 #searchBtn {
   width: 70px;
+  background-color: #b9b9b9;
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
 }
 
-main {
-  background-color: var(--bg-main-color);
+#searchBtn:hover {
+  background-color: white;
+  color: black;
+  border-color: #b9b9b9;
 }
 
 .movieCardList {
-  width: 1080px;
+  width: 100%;
+  max-width: 1080px; /* 큰 화면을 위한 최대 너비 설정 */
+  margin: 30px auto;
+  padding: 25px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 12px;
-  margin: 100px auto;
-  padding: 25px;
+}
+
+/* 작은 화면을 위한 미디어 쿼리 추가 */
+/* screen: 화면에 대한 미디어 타입 지정 - 컴퓨터 화면 */
+@media screen and (max-width: 500px) {
+  .movieCardList {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+
+  #title {
+    font-size: 60px;
+  }
 }
 
 .movieCard {
@@ -154,6 +194,29 @@ main {
   margin-bottom: 10px;
 }
 
+.movieCard > .movieGenre {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.movieCard > .movieRate {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.movieCard > .movieGenre {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.movieCard > .movieRate {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
 
 .movieOverview {
   position: absolute; /*가장 가까운 위치에 있는 조상 요소를 기준으로 배치*/
@@ -184,12 +247,30 @@ main {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  height: 38px;
+  width: 53px;
+  background-color: #b9b9b9;
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
 }
 
-.form-control, .btn {
+#toTop:hover {
+  background-color: white;
+  color: black;
+  border-color: #b9b9b9;
+}
+
+.form-control,
+.btn {
   outline: none !important;
   box-shadow: none !important;
+}
 
+.form-control,
+.btn {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .btn-outline-light {
