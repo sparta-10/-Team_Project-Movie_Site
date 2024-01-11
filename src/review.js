@@ -60,8 +60,3 @@ window.onload = function () {
   displayReviews();
 };
 
-
-
-
-
-

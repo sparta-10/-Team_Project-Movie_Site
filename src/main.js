@@ -7,9 +7,11 @@ import { submitReview, displayReviews } from "./review.js";
 // 클릭시 submitReview 함수호출
 document.getElementById('submitReviewButton').addEventListener('click', submitReview);
 
+
 // 정렬 버튼에 이벤트 등록(onclick대신)
 document.getElementById('sortByTitleBtn').addEventListener('click', sortByTitle);
 document.getElementById('sortByRateBtn').addEventListener('click', sortByRate);
+
 
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);
@@ -57,5 +59,4 @@ document.getElementById("togglehBtn").addEventListener("click", () => {
 document.getElementById("toTop").addEventListener("click", () => {
   scrollToTop();
 });
-
 
