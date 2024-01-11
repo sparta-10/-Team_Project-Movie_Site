@@ -86,11 +86,17 @@ body {
 #toggleBtn {
   height: 40px;
   width: 130px;
-  color: white;
-  background-color: rgb(255, 190, 201);
+  background-color: transparent;
+  color: black;
+  border-color: #a3a1a1;
   border-width: 1px;
-  border-color: rgb(255, 105, 130);
   border-radius: 5px;
+}
+
+#toggleBtn:hover {
+  letter-spacing: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 #searchMovie {
@@ -103,10 +109,9 @@ body {
 
 #searchBtn {
   width: 70px;
-  color: rgb(255, 0, 43);
-  background-color: rgb(248, 222, 226);
-  border-width: 1px;
-  border-color: rgb(255, 105, 130);
+  background-color: #b9b9b9;
+  color: white;
+  border-color: transparent;
   border-radius: 5px;
 }
 
@@ -208,10 +213,9 @@ body {
   right: 20px;
   height: 38px;
   width: 50px;
-  color: rgb(255, 0, 43);
-  background-color: rgb(248, 222, 226);
-  border-width: 1px;
-  border-color: rgb(255, 105, 130);
+  background-color: #b9b9b9;
+  color: white;
+  border-color: transparent;
   border-radius: 5px;
 }
 
