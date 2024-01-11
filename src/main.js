@@ -1,9 +1,27 @@
-import { movies, fetchMovies, makeMovieCards, hideMovies, openClose, scrollToTop } from "./movie.js";
+import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
+import {
+  movies,
+  fetchMovies,
+  makeMovieCards,
+  hideMovies,
+  openClose,
+  scrollToTop,
+  sortByTitle,
+  sortByRate
+} from "./movie.js";
 import { searchMovies } from "./search.js";
-import { submitReview, displayReviews } from "./review.js";
+import { submitReview } from "./review.js";
 
 // 클릭시 submitReview 함수호출
 document.getElementById("submitReviewButton").addEventListener("click", submitReview);
+
+// 정렬 버튼에 이벤트 등록(onclick대신)
+document.getElementById("sortByTitleBtn").addEventListener("click", () => {
+  sortByTitle();
+});
+document.getElementById("sortByRateBtn").addEventListener("click", () => {
+  sortByRate();
+});
 
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);

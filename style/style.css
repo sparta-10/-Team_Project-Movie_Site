@@ -60,9 +60,6 @@ body {
   background-color: cornflowerblue;
 }
 
-#modal .modal-main .movie-info {
-}
-
 #myTitle {
   margin: 50px auto 50px auto;
   width: 100%;
@@ -159,6 +156,7 @@ body {
 .poster {
   height: 485px;
   width: 100%;
+  transition: background-color 0.3s ease, filter 0.3s ease;
 }
 
 .movieCard h2 {
@@ -170,6 +168,18 @@ body {
 }
 
 .movieCard > .movieReleasedDate {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.movieCard > .movieGenre {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.movieCard > .movieRate {
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 10px;
@@ -236,6 +246,12 @@ body {
   box-shadow: none !important;
 }
 
+.form-control,
+.btn {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .btn-outline-light {
   color: #353535 !important;
   border-color: #353535 !important;
@@ -247,4 +263,20 @@ body {
 
 .container-fluid {
   justify-content: center !important;
+}
+
+.input-group-text {
+  background-color: transparent !important;
+  border: none !important;
+  margin-right: 3px;
+}
+
+.btn-group {
+  width: 50px;
+  display: flex !important;
+}
+
+#soltbtn {
+  text-align: center;
+  margin: 20px auto 0 auto;
 }
