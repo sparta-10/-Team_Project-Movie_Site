@@ -131,9 +131,7 @@ export function scrollToTop() {
 // 제목 내림차순 정렬
 export function sortByTitle() {
   const sortedTitle = movies.slice().sort((a, b) => {
-    const titleA = a.title.toLowerCase();
-    const titleB = b.title.toLowerCase();
-    return titleA.localeCompare(titleB);
+    return a.title.localeCompare(b.title);
   });
 
   // 기존의 영화 리스트 비우기
@@ -148,7 +146,7 @@ export function sortByTitle() {
 export function sortByRate() {
   const sortedRate = movies.slice().sort((a, b) => b.vote_average - a.vote_average);
 
-  // Clear the existing content of moviesBox
+  // 기존의 영화 리스트 비우기
   const moviesBox = document.getElementById("movieCardList");
   moviesBox.innerHTML = "";
 

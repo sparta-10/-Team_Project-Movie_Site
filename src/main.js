@@ -12,17 +12,6 @@ import {
 import { searchMovies } from "./search.js";
 import { submitReview } from "./review.js";
 
-// 클릭시 submitReview 함수호출
-document.getElementById("submitReviewButton").addEventListener("click", submitReview);
-
-// 정렬 버튼에 이벤트 등록(onclick대신)
-document.getElementById("sortByTitleBtn").addEventListener("click", () => {
-  sortByTitle();
-});
-document.getElementById("sortByRateBtn").addEventListener("click", () => {
-  sortByRate();
-});
-
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);
 
@@ -67,4 +56,15 @@ document.getElementById("toggleBtn").addEventListener("click", () => {
 // 클릭 이벤트 발생 시 scrollToTop 함수 호출
 document.getElementById("toTop").addEventListener("click", () => {
   scrollToTop();
+});
+
+// 클릭시 submitReview 함수 호출
+document.getElementById("submitReviewButton").addEventListener("click", submitReview);
+
+// 정렬 버튼에 이벤트 등록 -> 클릭 시 정렬 함수 호출
+document.getElementById("sortByTitleBtn").addEventListener("click", () => {
+  sortByTitle();
+});
+document.getElementById("sortByRateBtn").addEventListener("click", () => {
+  sortByRate();
 });
