@@ -68,21 +68,6 @@ export function makeMovieCards(movies) {
 
     moviesBox.insertAdjacentHTML("beforeend", template);
   });
-
-//   const modal = document.getElementById("modal");
-//   const modalBtn = document.querySelectorAll(".modalBtn");
-//   modalBtn.forEach((a) => {
-//     a.addEventListener("click", () => {
-//       modal.style.display = "block";
-//       openClose();
-//     });
-//   });
-
-//   const closebtn = document.getElementById("closebtn");
-//   closebtn.addEventListener("click", () => {
-//     modal.style.display = "none";
-//     openClose();
-//   });
 }
 
 // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로 만드는 함수
