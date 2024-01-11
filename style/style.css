@@ -81,11 +81,6 @@ body {
   color: #e8344e;
   font: bold;
   font-family: "Handletter" !important;
-  text-decoration: none !important; /* 하이퍼링크 밑줄 제거 */
-}
-
-#title:hover {
-  text-decoration: none !important; /* 호버 상태에서도 밑줄 제거 유지 */
 }
 
 #toggleBtn {

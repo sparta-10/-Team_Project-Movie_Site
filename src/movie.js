@@ -74,14 +74,14 @@ export function makeMovieCards(movies) {
   modalBtn.forEach((a) => {
     a.addEventListener("click", () => {
       modal.style.display = "block";
-      openclose();
+      openClose();
     });
   });
 
   const closebtn = document.getElementById("closebtn");
   closebtn.addEventListener("click", () => {
     modal.style.display = "none";
-    openclose();
+    openClose();
   });
 }
 
