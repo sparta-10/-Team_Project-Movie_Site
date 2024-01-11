@@ -52,7 +52,17 @@
     <header>
       <div id="myTitle" class="mytitle">
         <h1 id="title" class="title">Movie collection</h1>
-        <button id="toggleBtn" type="button">영화 목록 보기</button>
+        <div id="twoBtn">
+          <button id="toggleBtn" type="button">영화 목록 보기</button>
+
+          <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            정렬
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" id="sortByTitleBtn">제목순</a></li>
+            <li><a class="dropdown-item" href="#" id="sortByRateBtn">별점순</a></li>
+          </ul>
+        </div>
       </div>
     </header>
 
@@ -87,15 +97,6 @@
     </nav>
 
     <main>
-      <div class="btn-group" id="soltbtn">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          정렬
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" id="sortByTitleBtn">제목순</a></li>
-          <li><a class="dropdown-item" href="#" id="sortByRateBtn">별점순</a></li>
-        </ul>
-      </div>
       <ul id="movieCardList" class="movieCardList"></ul>
     </main>
 

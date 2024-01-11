@@ -73,11 +73,18 @@ body {
 
 #title {
   margin: 30px auto 30px auto;
-  font-size: 75px;
+  font-size: 90px;
   letter-spacing: -1px;
   color: #e8344e;
   font: bold;
   font-family: "Handletter" !important;
+}
+
+#twoBtn {
+  display: flex;
+  flex-direction: row;
+  width: 260px;
+  height: 40px;
 }
 
 #toggleBtn {
@@ -88,6 +95,8 @@ body {
   border-color: #a3a1a1;
   border-width: 1px;
   border-radius: 5px;
+  margin-left: 23px;
+  margin-right: 30px;
 }
 
 #toggleBtn:hover {
