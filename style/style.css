@@ -204,3 +204,19 @@ main {
 .container-fluid {
   justify-content: center !important;
 }
+
+.input-group-text {
+  background-color: transparent !important;
+  border: none !important;
+  margin-right: 3px;
+}
+
+.btn-group {
+  width: 50px;
+  display: flex !important;
+}
+
+#soltbtn {
+  text-align: center;
+  margin: 20px auto 0 auto;
+}

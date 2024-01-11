@@ -27,6 +27,7 @@ export function fetchMovies() {
     .catch((err) => console.error(err));
 }
 
+
 // 영화 카드 만들기
 export function makeMovieCards(movies) {
   const moviesBox = document.getElementById("movieCardList");
@@ -74,14 +75,18 @@ export function makeMovieCards(movies) {
   modalBtn.forEach((a) => {
     a.addEventListener("click", () => {
       modal.style.display = "block";
-      openclose();
+
+      openClose();
+
     });
   });
 
   const closebtn = document.getElementById("closebtn");
   closebtn.addEventListener("click", () => {
     modal.style.display = "none";
-    openclose();
+
+    openClose();
+
   });
 }
 
@@ -123,9 +128,44 @@ export function openClose() {
       card.style.display = "none"; // 사라지도록
     }
   });
+
 }
 
 // 페이지 상단으로 올라가는 함수(top 버튼)
 export function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+
+// 제목 내림차순 정렬
+export function sortByTitle() {
+  const sortedMovies = movies.slice().sort((a, b) => {
+    const titleA = a.title.toLowerCase();
+    const titleB = b.title.toLowerCase();
+    return titleB.localeCompare(titleA);
+  });
+
+  // 정렬된 영화 데이터로 카드 업데이트
+  makeMovieCards(sortedMovies);
+
+  // 다시 보이기
+  openClose();
+
+  // 페이지 상단으로 스크롤
+  scrollToTop();
+}
+
+// 평점 내림차순 정렬
+export function sortByRate() {
+  const sortedMovies = movies.slice().sort((a, b) => b.vote_average - a.vote_average);
+
+  // 정렬된 영화 데이터로 카드 업데이트
+  makeMovieCards(sortedMovies);
+
+  // 다시 보이기
+  openClose();
+
+  // 페이지 상단으로 스크롤
+  scrollToTop();
+}
+

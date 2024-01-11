@@ -1,83 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./style/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <script type="module" src="./src/main.js"></script>
+  <link rel="stylesheet" href="./style/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script type="module" src="./src/main.js"></script>
 
-    <title>Movie collection</title>
-  </head>
+  <title>Movie collection</title>
+</head>
 
-  <body>
-    <div id="modal">
-      <header class="modal-header">
-        <button id="closebtn">X</button>
-        <h1>Movie collection</h1>
-      </header>
-      <main class="modal-main">
-        <div class="movie-info"></div>
-        <div class="movie-poster">
-
-        </div>
-      </main>
-      <footer>
-          <form id="reviewForm">
-            <label for="username">작성자:</label>
-            <input type="text" id="username" required>
-            
-            <label for="review">리뷰:</label>
-            <textarea id="review" required></textarea>
-            
-            <label for="password">확인 비밀번호:</label>
-            <input type="password" id="password" required>
-            
-            <button type="button" id="submitReviewButton">리뷰 작성</button>
-            </form>
-            
-            <ul id="reviewList"></ul>
-      </footer>
-    </div>
-    <header>
-      <div id="myTitle" class="mytitle">
-        <h1 id="title" class="title">Movie collection</h1>
-        <button id="togglehBtn" type="button" class="btn btn-outline-light">영화 목록 보기</button>
-      </div>
+<body>
+  <div id="modal">
+    <header class="modal-header">
+      <button id="closebtn">X</button>
+      <h1>Movie collection</h1>
     </header>
+    <main class="modal-main">
+      <div class="movie-info"></div>
+      <div class="movie-poster">
 
-    <nav id="searchBar" class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a id="searchMovie" class="navbar-brand">영화 검색 : </a>
-        <form class="d-flex" role="search">
-          <input
-            id="searchInput"
-            class="form-control me-2"
-            type="search"
-            placeholder="찾고 싶은 영화 제목을 입력하세요."
-            aria-label="Search"
-          />
-          <button id="searchBtn" class="btn btn-secondary" type="submit">검색</button>
-        </form>
       </div>
-    </nav>
-
-    <main>
-      <ul id="movieCardList" class="movieCardList"></ul>
     </main>
-
     <footer>
-      <button id="toTop" type="button" class="btn btn-secondary">Top</button>
+      <form id="reviewForm">
+        <label for="username">작성자:</label>
+        <!-- autocomplete=자동완성기능. on해줘야 오류가 덜 나는듯 -->
+        <input type="text" id="username" required="" autocomplete="on">
+
+        <label for="review">리뷰:</label>
+        <textarea id="review" required></textarea>
+
+        <label for="password">확인 비밀번호:</label>
+        <input type="password" id="password" required>
+
+        <button type="button" id="submitReviewButton">리뷰 작성</button>
+      </form>
+
+      <ul id="reviewList"></ul>
     </footer>
-  </body>
+  </div>
+  <header>
+    <div id="myTitle" class="mytitle">
+      <h1 id="title" class="title">Movie collection</h1>
+      <button id="togglehBtn" type="button" class="btn btn-outline-light">영화 목록 보기</button>
+    </div>
+  </header>
+
+  <nav id="searchBar" class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <span class="input-group-text" id="basic-addon1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+          </path>
+        </svg>
+      </span>
+      <form class="d-flex" role="search">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="찾고 싶은 영화 제목을 입력하세요."
+          aria-label="Search" />
+        <button id="searchBtn" class="btn btn-secondary" type="submit">검색</button>
+      </form>
+    </div>
+  </nav>
+
+  <main>
+    <div class="btn-group" id="soltbtn">
+      <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        정렬
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#" id="sortByTitleBtn">제목순</a></li>
+        <li><a class="dropdown-item" href="#" id="sortByRateBtn">별점순</a></li>
+      </ul>
+    </div>
+    <ul id="movieCardList" class="movieCardList"></ul>
+  </main>
+
+  <footer>
+    <button id="toTop" type="button" class="btn btn-secondary">Top</button>
+  </footer>
+</body>
+
 </html>
