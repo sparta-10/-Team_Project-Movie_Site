@@ -64,7 +64,7 @@ body {
 }
 
 #myTitle {
-  margin: auto;
+  margin: 50px auto 50px auto;
   width: 100%;
   max-width: 1080px; /* 큰 화면을 위한 최대 너비 설정 */
   height: 250px;
@@ -75,7 +75,7 @@ body {
 }
 
 #title {
-  margin: 60px auto 20px auto;
+  margin: 30px auto 30px auto;
   font-size: 75px;
   letter-spacing: -1px;
   color: #e8344e;
@@ -115,10 +115,16 @@ body {
   border-radius: 5px;
 }
 
+#searchBtn:hover {
+  background-color: white;
+  color: black;
+  border-color: #b9b9b9;
+}
+
 .movieCardList {
   width: 100%;
   max-width: 1080px; /* 큰 화면을 위한 최대 너비 설정 */
-  margin: 100px auto;
+  margin: 30px auto;
   padding: 25px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -153,7 +159,6 @@ body {
 .poster {
   height: 485px;
   width: 100%;
-  transition: background-color 0.3s ease, filter 0.3s ease;
 }
 
 .movieCard h2 {
@@ -212,11 +217,17 @@ body {
   bottom: 20px;
   right: 20px;
   height: 38px;
-  width: 50px;
+  width: 53px;
   background-color: #b9b9b9;
   color: white;
   border-color: transparent;
   border-radius: 5px;
+}
+
+#toTop:hover {
+  background-color: white;
+  color: black;
+  border-color: #b9b9b9;
 }
 
 .form-control,
