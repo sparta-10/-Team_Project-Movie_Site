@@ -2,18 +2,35 @@ import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.mi
 import {
   movies,
   setFilteredMovies,
-  fetchMovies,
+
+  renderMovies,
   makeMovieCards,
+  hideMovies,
   openClose,
   scrollToTop,
   sortByTitle,
   sortByRate
 } from "./movie.js";
 import { searchMovies } from "./search.js";
-import { submitReview } from "./review.js";
+
+// import { submitReview } from "./review.js";
 
 // 페이지 로드 시 fetchMovies 함수 호출
-document.addEventListener("DOMContentLoaded", fetchMovies);
+document.addEventListener("DOMContentLoaded", renderMovies);
+
+// 클릭시 submitReview 함수호출
+// document.getElementById("submitReviewButton").addEventListener("click", submitReview);
+
+// 정렬 버튼에 이벤트 등록(onclick대신)
+document.getElementById("sortByTitleBtn").addEventListener("click", () => {
+  sortByTitle();
+});
+document.getElementById("sortByRateBtn").addEventListener("click", () => {
+  sortByRate();
+});
+
+// 페이지 로드 시 fetchMovies 함수 호출
+document.addEventListener("DOMContentLoaded", renderMovies);
 
 document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("searchBtn");
@@ -42,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로
+hideMovies();
+
 // 클릭 이벤트 발생 시 openClose 함수 호출
 document.getElementById("toggleBtn").addEventListener("click", () => {
   openClose();
@@ -51,9 +71,6 @@ document.getElementById("toggleBtn").addEventListener("click", () => {
 document.getElementById("toTop").addEventListener("click", () => {
   scrollToTop();
 });
-
-// 클릭시 submitReview 함수 호출
-document.getElementById("submitReviewButton").addEventListener("click", submitReview);
 
 // 정렬 버튼에 이벤트 등록 -> 클릭 시 정렬 함수 호출
 document.getElementById("sortByTitleBtn").addEventListener("click", () => {

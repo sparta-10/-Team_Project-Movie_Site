@@ -14,8 +14,8 @@ export function setFilteredMovies(movies) {
 }
 export let genres = [];
 
-export function fetchMovies() {
-  Promise.all([
+export async function fetchMovies() {
+  await Promise.all([
     fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", options),
     fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko", options)
   ])
@@ -23,14 +23,19 @@ export function fetchMovies() {
     .then((responses) => Promise.all(responses.map((response) => response.json())))
     .then(([moviesResponse, genresResponse]) => {
       movies = moviesResponse.results; // 영화 데이터를 배열에 저장
-      filteredMovies = moviesResponse.results; // 영화 데이터를 검색어로 필터링된 배열에 저장
       genres = genresResponse.genres; // 장르 데이터를 배열에 저장
-
-      makeMovieCards(movies); // 영화 카드 만들기 함수 호출
-      hideMovies(); // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로
     })
     .catch((err) => console.error(err));
 }
+
+export async function renderMovies() {
+  await fetchMovies();
+  makeMovieCards(movies); // 영화 카드 만들기 함수 호출
+  hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
+}
+
+export const getMovies = () => movies; // function getMovies () { return movies } 랑 똑같은 애
+export const getGenres = () => genres;
 
 // 영화 카드 만들기
 export function makeMovieCards(movies) {
@@ -41,9 +46,7 @@ export function makeMovieCards(movies) {
     const splitDate = date.split("-");
     return splitDate.join(".");
   }
-
-  moviesBox.innerHTML = ""; // 기존 카드 비우기
-
+  
   movies.forEach((movie) => {
     // 영화의 장르 Id 가져오기
     // || [] : movie.genre_ids가 null 또는 undefined인 경우,
@@ -58,21 +61,19 @@ export function makeMovieCards(movies) {
 
     // 장르 이름을 쉼표로 구분하여 표시
     const genreList = movieGenres.join(", ");
-
     const template = `
-            <div id="movie">          
-            <li id=${movie.id} class="movieCard">
+            <div id="movie">            
+            <li id="${movie.id}" class="movieCard">
             <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt=""/>
             <h2 class="movieTitle">${movie.title}</h2>
             <p class="movieReleasedDate">${transformDateFormat(movie.release_date)}</p>
             <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
             <p class="movieRate"><span class="star">⭐ ${movie.vote_average.toFixed(1)}</span></p>
-            <button id="modalbtn" class="modalBtn">자세히보기</button>
+            <a id="movie-info-btn" href="/detail.html?data=${movie.id}">자세히보기</a>
             </li>
             </div>
             `;
-
     moviesBox.insertAdjacentHTML("beforeend", template);
   });
 
@@ -97,13 +98,31 @@ export function hideMovies() {
   let cards = document.querySelectorAll(".movieCard");
 
   cards.forEach((card) => (card.style.display = "none"));
+
+  // 토글 되어도 배경색 유지 위함
+  document.body.style.backgroundColor = "gainsboro";
 }
 
-export function showMovies() {
-  let cards = document.querySelectorAll(".movieCard");
+// alert 창 띄우는 함수
+// 이벤트 위임: 하위요소에서 발생한 이벤트를 상위요소에서 처리
+// export function clickCard({ target, cardList }) {
+//   // 카드 외 영역 클릭 시 무시
+//   if (target === cardList) return;
 
-  cards.forEach((card) => (card.style.display = "flex"));
+//   if (target.matches(".movieCard")) {
+//     alert(`영화 id: ${target.id}`);
+//   } else {
+//     // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
+//     alert(`영화 id: ${target.parentNode.id}`);
+//   }
+// }
 }
+
+// export function showMovies() {
+//   let cards = document.querySelectorAll(".movieCard");
+
+//   cards.forEach((card) => (card.style.display = "flex"));
+// }
 
 // 영화 목록 보기 버튼 클릭 시 토글하는 함수
 export function openClose() {
@@ -126,9 +145,19 @@ export function scrollToTop() {
 
 // 제목 내림차순 정렬
 export function sortByTitle() {
-  const sortedTitle = filteredMovies.slice().sort((a, b) => {
-    return a.title.localeCompare(b.title);
+  const sortedTitle = movies.slice().sort((a, b) => {
+    const titleA = a.title.toLowerCase();
+    const titleB = b.title.toLowerCase();
+    return titleA.localeCompare(titleB);
   });
+
+  // 기존의 영화 리스트 비우기
+  const moviesBox = document.getElementById("movieCardList");
+  moviesBox.innerHTML = "";
+
+//   const sortedTitle = filteredMovies.slice().sort((a, b) => {
+//     return a.title.localeCompare(b.title);
+//   });
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
@@ -136,7 +165,14 @@ export function sortByTitle() {
 
 // 평점 내림차순 정렬
 export function sortByRate() {
-  const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
+  const sortedRate = movies.slice().sort((a, b) => b.vote_average - a.vote_average);
+
+  // Clear the existing content of moviesBox
+  const moviesBox = document.getElementById("movieCardList");
+  moviesBox.innerHTML = "";
+
+//   const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
+
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);

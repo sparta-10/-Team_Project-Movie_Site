@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/style/reset.css" />
+    <link rel="stylesheet" href="/style/detail.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap" />
+    <script src="https://kit.fontawesome.com/abac2ee492.js" crossorigin="anonymous"></script>
+    <script type="module" src="./src/detail.js"></script>
+
+    <title>movie detail page</title>
+  </head>
+
+  <body>
+    <div id="modal">
+      <header class="modal-header">
+        <button id="modal-closebtn">
+          <a href="/index.html">
+            <i class="fa-solid fa-xmark"></i>
+          </a>
+        </button>
+        <h1>Movie collection</h1>
+      </header>
+      <main class="modal-main">
+        <div class="movie-poster">
+          <img id="movie-img" src="/assets/images/user.jpg" alt="영화 포스터 이미지" />
+        </div>
+        <div class="movie-info">
+          <h1 id="modal-title">영화 제목</h1>
+          <h3 id="release_date">개봉일:</h3>
+          <h3 id="name">장르:</h3>
+          <h3 id="vote_average">평점:</h3>
+          <h3 id="overview">줄거리:</h3>
+        </div>
+      </main>
+      <footer>
+        <form id="reviewForm" class="reviewForm">
+          <label for="username">작성자:</label>
+          <!-- autocomplete=자동완성기능. on해줘야 오류가 덜 나는듯 -->
+          <input type="text" id="username" calss="username" required="" autocomplete="on" />
+
+          <label for="review">리뷰:</label>
+          <textarea id="review" class="review" required></textarea>
+
+          <label for="password">확인 비밀번호:</label>
+          <input type="password" id="password" class="password" required />
+
+          <button type="button" id="submitReviewButton" class="submitReviewButton">리뷰 작성</button>
+        </form>
+
+        <ul id="reviewList"></ul>
+      </footer>
+    </div>
+  </body>
+</html>
