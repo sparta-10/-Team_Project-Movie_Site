@@ -1,66 +1,50 @@
-// import { submitReview } from "./review.js";
-// // 클릭시 submitReview 함수호출
-// document.getElementById("submitReviewButton").addEventListener("click", submitReview);
-import { getMovies, fetchMovies } from "./movie.js";
+import { submitReview } from "./review.js";
+// 클릭시 submitReview 함수호출
+document.getElementById("submitReviewButton").addEventListener("click", submitReview);
 
-window.onload = async function () {
-  let urlParams = new URLSearchParams(window.location.search);
-  let receivedData = urlParams.get("data");
-  console.log(receivedData);
-
-  await fetchMovies(receivedData);
-
-  const movies = getMovies();
-  console.log(movies);
-
-  const reviewDataList = [];
-  const reviewListElement = document.querySelector("#reviewList");
-
-  movies.forEach((movie) => {
-    const movieTitleList = movie.title.split(","); // [스파이더맨, 런닝맨 ..]
-
-    movieTitleList.forEach(() => {
-      // const formList = document.querySelectorAll(".reviewForm");
-      // formList.forEach((document) => {
-      // reviewbtn.forEach((btn, index) => {
-      const username = document.querySelector(".username").value;
-      const review = document.querySelector(".review").value;
-      const password = document.querySelector(".password").value;
-      const reviewbtn = document.getElementById("submitReviewButton");
-
-      reviewbtn.addEventListener("click", () => {
-        if (username && review && password) {
-          const reviewData = {
-            usernameContent: username,
-            reviewContent: review,
-            passwordContent: password
-          };
-
-          reviewDataList.push(reviewData);
-
-          const reviewPair = {
-            movietitle: reviewDataList
-          };
-
-          localStorage.setItem("movieName", JSON.stringify(reviewPair));
-          alert("리뷰가 작성되었습니다.");
-          console.log("리뷰작성 완료");
-        } else {
-          alert("내용을 입력해주세요.");
-          console.error("리뷰작성 미완료");
-        }
-
-        console.log(modal);
-        reviewListElement.innerHTML = "";
-
-        let doneReviewlist = JSON.parse(localStorage.getItem("movieName"));
-
-        doneReviewlist.forEach((a) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = `작성자 : ${a.usernameContent}, 리뷰:${a.reviewContent}`;
-          reviewListElement.appendChild(listItem);
-        });
-      });
-    });
-  });
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYmQzZmI5OTkyMjA2MjRiM2U3MmZlN2RmYTNmZDllOCIsInN1YiI6IjY1OTZkZDYyZWEzN2UwMDZmYTRjZDVkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gq8AghSSWR5zlZngutCS3V1eRtf8JDANW3gZOJpOIUA"
+  }
 };
+
+
+fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", options)
+  .then((response) => response.json())
+  .then((data) => {
+    const movies = data.results;
+    console.log(data);
+    movies.forEach((movie) => {
+      let modal = document.querySelector(".modal-main");
+      let moviePoster = movie.poster_path;
+      let modalTitle = movie.title;
+      let releaseDate = movie.release_date;
+      let voteAverage = movie.vote_average;
+      let overview = movie.overview;
+      let id = movie.id;
+
+      let temp_html = `
+          <main class="modal-main" data-id="${id}">
+            <div class="movie-poster">
+              <img id="movie-img" src="https://image.tmdb.org/t/p/w500${moviePoster}" alt="영화 포스터 이미지">
+            </div>
+            <div class="movie-info">
+              <h1 id="modal-title">${modalTitle}</h1>
+              <h3 id="release_date">개봉일: ${releaseDate}</h3>
+              <h3 id="name">장르: </h3>
+              <h3 id="vote_average">평점: ${voteAverage}</h3>
+              <h3 id="overview">줄거리: ${overview}</h3>
+            </div>
+          </main>
+        `;
+
+      modal.innerHTML = temp_html; // Use innerHTML to replace existing content
+    });
+  })
+
+  .catch((error) => {
+    console.log("데이터를 받아오는 데 실패했습니다:", error);
+  });

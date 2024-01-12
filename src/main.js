@@ -1,7 +1,7 @@
 import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
 import {
   movies,
-  renderMovies,
+  fetchMovies,
   makeMovieCards,
   hideMovies,
   openClose,
@@ -24,7 +24,7 @@ document.getElementById("sortByRateBtn").addEventListener("click", () => {
 });
 
 // 페이지 로드 시 fetchMovies 함수 호출
-document.addEventListener("DOMContentLoaded", renderMovies);
+document.addEventListener("DOMContentLoaded", fetchMovies);
 
 // id값 알려주는 alert 창 띄우기
 // const cardList = document.querySelector("#movieCardList");
