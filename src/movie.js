@@ -8,6 +8,11 @@ const options = {
 };
 
 export let movies = [];
+export let filteredMovies = [];
+export function setFilteredMovies(movies) {
+  filteredMovies = movies;
+}
+
 export let genres = [];
 
 export function fetchMovies() {
@@ -19,6 +24,7 @@ export function fetchMovies() {
     .then((responses) => Promise.all(responses.map((response) => response.json())))
     .then(([moviesResponse, genresResponse]) => {
       movies = moviesResponse.results; // 영화 데이터를 배열에 저장
+      filteredMovies = moviesResponse.results;
       genres = genresResponse.genres; // 장르 데이터를 배열에 저장
 
       makeMovieCards(movies); // 영화 카드 만들기 함수 호출
@@ -36,6 +42,8 @@ export function makeMovieCards(movies) {
     const splitDate = date.split("-");
     return splitDate.join(".");
   }
+
+  moviesBox.innerHTML = ""; // 기존 카드 비우기
 
   movies.forEach((movie) => {
     // 영화의 장르 Id 가져오기
@@ -130,13 +138,9 @@ export function scrollToTop() {
 
 // 제목 내림차순 정렬
 export function sortByTitle() {
-  const sortedTitle = movies.slice().sort((a, b) => {
+  const sortedTitle = filteredMovies.slice().sort((a, b) => {
     return a.title.localeCompare(b.title);
   });
-
-  // 기존의 영화 리스트 비우기
-  const moviesBox = document.getElementById("movieCardList");
-  moviesBox.innerHTML = "";
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
@@ -144,11 +148,7 @@ export function sortByTitle() {
 
 // 평점 내림차순 정렬
 export function sortByRate() {
-  const sortedRate = movies.slice().sort((a, b) => b.vote_average - a.vote_average);
-
-  // 기존의 영화 리스트 비우기
-  const moviesBox = document.getElementById("movieCardList");
-  moviesBox.innerHTML = "";
+  const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);

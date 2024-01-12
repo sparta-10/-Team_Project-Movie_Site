@@ -1,6 +1,7 @@
 import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
 import {
   movies,
+  setFilteredMovies,
   fetchMovies,
   makeMovieCards,
   hideMovies,
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 영화 제목에 검색어가 포함된 영화만 선택
     const searchedMovies = searchMovies(movies, searchInputValue);
+    setFilteredMovies(searchedMovies);
 
     // moviesBox의 내용 비워줌
     moviesBox.innerHTML = "";
