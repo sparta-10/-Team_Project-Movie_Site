@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Handletter';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff') format('woff');
+  font-family: "Handletter";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -15,13 +15,14 @@ body {
   background-color: white !important;
 }
 
-#modal {
+/* #modal {
   position: fixed;
   background-color: rgb(255, 255, 255);
   width: 100vw;
   height: 100vh;
-  z-index: 99;
-}
+  z-index: 99; 
+} */
+/* 디테일 페이지에서 리뷰 부분이 안보여서 잠시 임시로 주석처리 했습니다! */
 #modalbtn {
   height: 50px;
   width: 100%;
@@ -40,7 +41,7 @@ body {
   color: #e8344e;
   font-size: 64px;
   letter-spacing: -1px;
-  font-family: 'Handletter' !important;
+  font-family: "Handletter" !important;
 }
 #modal-closebtn {
   width: 30px;
@@ -58,7 +59,7 @@ body {
   width: 1080px;
   margin: 0 auto;
   height: 700px;
-  font-family: 'Pretendard-Regular' !important;
+  font-family: "Pretendard-Regular" !important;
 }
 #modal .modal-main .movie-info {
   width: 600px;
