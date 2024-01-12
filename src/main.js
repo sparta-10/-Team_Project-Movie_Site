@@ -1,6 +1,7 @@
 import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
 import {
   movies,
+  setFilteredMovies,
   renderMovies,
   makeMovieCards,
   hideMovies,
@@ -12,6 +13,9 @@ import {
 import { searchMovies } from "./search.js";
 // import { submitReview } from "./review.js";
 
+// 페이지 로드 시 fetchMovies 함수 호출
+document.addEventListener("DOMContentLoaded", renderMovies);
+
 // 클릭시 submitReview 함수호출
 // document.getElementById("submitReviewButton").addEventListener("click", submitReview);
 
@@ -22,9 +26,6 @@ document.getElementById("sortByTitleBtn").addEventListener("click", () => {
 document.getElementById("sortByRateBtn").addEventListener("click", () => {
   sortByRate();
 });
-
-// 페이지 로드 시 fetchMovies 함수 호출
-document.addEventListener("DOMContentLoaded", renderMovies);
 
 // id값 알려주는 alert 창 띄우기
 // const cardList = document.querySelector("#movieCardList");
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 영화 제목에 검색어가 포함된 영화만 선택
     const searchedMovies = searchMovies(movies, searchInputValue);
-
+    setFilteredMovies(searchedMovies);
     // moviesBox의 내용 비워줌
     moviesBox.innerHTML = "";
 
@@ -67,4 +68,12 @@ document.getElementById("toggleBtn").addEventListener("click", () => {
 // 클릭 이벤트 발생 시 scrollToTop 함수 호출
 document.getElementById("toTop").addEventListener("click", () => {
   scrollToTop();
+});
+
+// 정렬 버튼에 이벤트 등록 -> 클릭 시 정렬 함수 호출
+document.getElementById("sortByTitleBtn").addEventListener("click", () => {
+  sortByTitle();
+});
+document.getElementById("sortByRateBtn").addEventListener("click", () => {
+  sortByRate();
 });

@@ -7,9 +7,11 @@ const options = {
   }
 };
 
-let mainPageData;
-
 export let movies = [];
+export let filteredMovies = [];
+export function setFilteredMovies(movies) {
+  filteredMovies = movies;
+}
 export let genres = [];
 
 export async function fetchMovies() {
@@ -20,8 +22,6 @@ export async function fetchMovies() {
 
     .then((responses) => Promise.all(responses.map((response) => response.json())))
     .then(([moviesResponse, genresResponse]) => {
-      mainPageData = [moviesResponse, genresResponse];
-
       movies = moviesResponse.results; // 영화 데이터를 배열에 저장
       genres = genresResponse.genres; // 장르 데이터를 배열에 저장
     })
@@ -32,10 +32,10 @@ export async function renderMovies() {
   await fetchMovies();
   makeMovieCards(movies); // 영화 카드 만들기 함수 호출
   hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
-  // goToDetailPage();
 }
 
-export const getMovies = () => movies;
+export const getMovies = () => movies; // function getMovies () { return movies } 랑 똑같은 애
+export const getGenres = () => genres;
 
 // 영화 카드 만들기
 export function makeMovieCards(movies) {
@@ -64,18 +64,17 @@ export function makeMovieCards(movies) {
 
     const template = `
             <div id="movie">            
-            <li id=${movie.id} class="movieCard">
+            <li id="${movie.id}" class="movieCard">
             <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt=""/>
             <h2 class="movieTitle">${movie.title}</h2>
             <p class="movieReleasedDate">${transformDateFormat(movie.release_date)}</p>
             <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
             <p class="movieRate"><span class="star">⭐ ${movie.vote_average.toFixed(1)}</span></p>
-            <a id="movie-info-btn" href="/detail.html?data=movie">자세히보기</a>
+            <a id="movie-info-btn" href="/detail.html?data=${movie.id}">자세히보기</a>
             </li>
             </div>
             `;
-
     moviesBox.insertAdjacentHTML("beforeend", template);
   });
 }
