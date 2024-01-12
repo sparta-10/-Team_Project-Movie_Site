@@ -1,9 +1,9 @@
 import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
 import {
   movies,
+  setFilteredMovies,
   fetchMovies,
   makeMovieCards,
-  hideMovies,
   openClose,
   scrollToTop,
   sortByTitle,
@@ -14,10 +14,6 @@ import { submitReview } from "./review.js";
 
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);
-
-// id값 알려주는 alert 창 띄우기
-// const cardList = document.querySelector("#movieCardList");
-// cardList.addEventListener("click", (event) => clickCard({ target: event.target, cardList }));
 
 document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("searchBtn");
@@ -36,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 영화 제목에 검색어가 포함된 영화만 선택
     const searchedMovies = searchMovies(movies, searchInputValue);
+    setFilteredMovies(searchedMovies);
 
     // moviesBox의 내용 비워줌
     moviesBox.innerHTML = "";
@@ -44,9 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     makeMovieCards(searchedMovies);
   });
 });
-
-// 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로
-hideMovies();
 
 // 클릭 이벤트 발생 시 openClose 함수 호출
 document.getElementById("toggleBtn").addEventListener("click", () => {
