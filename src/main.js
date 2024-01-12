@@ -4,7 +4,6 @@ import {
   setFilteredMovies,
   fetchMovies,
   makeMovieCards,
-  hideMovies,
   openClose,
   scrollToTop,
   sortByTitle,
@@ -15,10 +14,6 @@ import { submitReview } from "./review.js";
 
 // 페이지 로드 시 fetchMovies 함수 호출
 document.addEventListener("DOMContentLoaded", fetchMovies);
-
-// id값 알려주는 alert 창 띄우기
-// const cardList = document.querySelector("#movieCardList");
-// cardList.addEventListener("click", (event) => clickCard({ target: event.target, cardList }));
 
 document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("searchBtn");
@@ -46,9 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     makeMovieCards(searchedMovies);
   });
 });
-
-// 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로
-hideMovies();
 
 // 클릭 이벤트 발생 시 openClose 함수 호출
 document.getElementById("toggleBtn").addEventListener("click", () => {
