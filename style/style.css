@@ -61,6 +61,8 @@ body {
   margin-right: 30px;
 }
 
+=======
+
 #toggleBtn:hover {
   letter-spacing: 2px;
   transform: scale(1.2);
@@ -150,7 +152,6 @@ body {
   margin-right: 20px;
   margin-bottom: 10px;
 }
-
 .movieCard > .movieRate {
   margin-left: 20px;
   margin-right: 20px;

@@ -13,3 +13,4 @@ export function searchMovies(movies, searchInputValue) {
 
   return resultMovies;
 }
+

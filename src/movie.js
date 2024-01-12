@@ -46,7 +46,7 @@ export function makeMovieCards(movies) {
     const splitDate = date.split("-");
     return splitDate.join(".");
   }
-
+  
   movies.forEach((movie) => {
     // 영화의 장르 Id 가져오기
     // || [] : movie.genre_ids가 null 또는 undefined인 경우,
@@ -76,6 +76,21 @@ export function makeMovieCards(movies) {
             `;
     moviesBox.insertAdjacentHTML("beforeend", template);
   });
+
+  const modal = document.getElementById("modal");
+  const modalBtn = document.querySelectorAll(".modalBtn");
+  modalBtn.forEach((a) => {
+    a.addEventListener("click", () => {
+      modal.style.display = "block";
+      openClose();
+    });
+  });
+
+  const closebtn = document.getElementById("closebtn");
+  closebtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    openClose();
+  });
 }
 
 // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로 만드는 함수
@@ -100,6 +115,13 @@ export function hideMovies() {
 //     // 카드의 자식 태그 (img, h3, p) 클릭 시 부모의 id로 접근
 //     alert(`영화 id: ${target.parentNode.id}`);
 //   }
+// }
+}
+
+// export function showMovies() {
+//   let cards = document.querySelectorAll(".movieCard");
+
+//   cards.forEach((card) => (card.style.display = "flex"));
 // }
 
 // 영화 목록 보기 버튼 클릭 시 토글하는 함수
@@ -133,6 +155,10 @@ export function sortByTitle() {
   const moviesBox = document.getElementById("movieCardList");
   moviesBox.innerHTML = "";
 
+//   const sortedTitle = filteredMovies.slice().sort((a, b) => {
+//     return a.title.localeCompare(b.title);
+//   });
+
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
 }
@@ -144,6 +170,9 @@ export function sortByRate() {
   // Clear the existing content of moviesBox
   const moviesBox = document.getElementById("movieCardList");
   moviesBox.innerHTML = "";
+
+//   const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
+
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);

@@ -2,6 +2,7 @@ import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.mi
 import {
   movies,
   setFilteredMovies,
+
   renderMovies,
   makeMovieCards,
   hideMovies,
@@ -11,6 +12,7 @@ import {
   sortByRate
 } from "./movie.js";
 import { searchMovies } from "./search.js";
+
 // import { submitReview } from "./review.js";
 
 // 페이지 로드 시 fetchMovies 함수 호출
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 영화 제목에 검색어가 포함된 영화만 선택
     const searchedMovies = searchMovies(movies, searchInputValue);
     setFilteredMovies(searchedMovies);
+
     // moviesBox의 내용 비워줌
     moviesBox.innerHTML = "";
 
