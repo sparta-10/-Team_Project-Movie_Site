@@ -42,20 +42,26 @@ window.onload = async function () {
 
     const storedReviews = JSON.parse(localStorage.getItem(title)) || [];
     storedReviews.forEach((reviewData) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = `작성자 : ${reviewData.usernameContent}, 리뷰: ${reviewData.reviewContent}`;
+      const listItem = document.createElement("div");
+      const authorItem = document.createElement('li');
+      authorItem.textContent = `작성자 : ${reviewData.usernameContent}`;
 
-      // 수정 버튼 생성 및 클릭 이벤트 리스너 추가
+      const reviewItem = document.createElement('li');
+      reviewItem.textContent = `리뷰 : ${reviewData.reviewContent}`;
+
+      // 수정 버튼 생성 및 클릭 이벤트 추가
       const editButton = document.createElement("button");
       editButton.textContent = "수정";
       editButton.addEventListener("click", () => editReview(title)); // 리뷰 키 전달
 
-      // 삭제 버튼 생성 및 클릭 이벤트 리스너 추가
+      // 삭제 버튼 생성 및 클릭 이벤트 추가
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "삭제";
       deleteButton.addEventListener("click", () => deleteReview(title)); // 리뷰 키 전달
 
       // 버튼들을 리스트 아이템에 추가
+      listItem.appendChild(authorItem);
+      listItem.appendChild(reviewItem);
       listItem.appendChild(editButton);
       listItem.appendChild(deleteButton);
 
@@ -121,69 +127,69 @@ window.onload = async function () {
     })
   );
 
-// 리뷰 수정하기
-function editReview(reviewKey) {
-  // 리뷰 데이터 가져오기
-  const storedReviews = JSON.parse(localStorage.getItem(title));
+  // 리뷰 수정하기
+  function editReview(reviewKey) {
+    // 리뷰 데이터 가져오기
+    const storedReviews = JSON.parse(localStorage.getItem(title));
 
-  if (!storedReviews) {
-    alert("수정할 리뷰를 찾을 수 없습니다.");
-    return;
-  }
-
-  const userEnteredPassword = prompt("비밀번호를 입력하세요:");
-
-  // 입력한 비밀번호와 저장된 비밀번호 비교하면서 수정
-  const foundReview = storedReviews.find((a)=> a.passwordContent === userEnteredPassword);
-  if (foundReview) {
-    const updatedUsername = prompt("수정된 작성자 이름:", foundReview.usernameContent);
-    const updatedReview = prompt("수정된 리뷰 내용:", foundReview.reviewContent);
-
-    if (updatedUsername !== null && updatedReview !== null) {
-      foundReview.usernameContent = updatedUsername;
-      foundReview.reviewContent = updatedReview;
-
-      localStorage.setItem(reviewKey, JSON.stringify(storedReviews));
-      alert("리뷰가 수정되었습니다.");
-
-      // 수정 후에 저장된 리뷰를 다시 표시
-      displayReviews(title);
+    if (!storedReviews) {
+      alert("수정할 리뷰를 찾을 수 없습니다.");
+      return;
     }
-  } else {
-    alert("비밀번호가 일치하지 않습니다. 수정 권한이 없습니다.");
-  }
-}
 
+    const userEnteredPassword = prompt("비밀번호를 입력하세요:");
 
-// 리뷰 삭제하기
-function deleteReview(reviewKey) {
-  // 리뷰 데이터 가져오기
-  const storedReviews = JSON.parse(localStorage.getItem(title));
+    // 입력한 비밀번호와 저장된 비밀번호 비교하면서 수정
+    const foundReview = storedReviews.find((a) => a.passwordContent === userEnteredPassword);
+    if (foundReview) {
+      const updatedUsername = prompt("수정된 작성자 이름:", foundReview.usernameContent);
+      const updatedReview = prompt("수정된 리뷰 내용:", foundReview.reviewContent);
 
-  if (!storedReviews) {
-    alert("삭제할 리뷰를 찾을 수 없습니다.");
-    return;
-  }
+      if (updatedUsername !== null && updatedReview !== null) {
+        foundReview.usernameContent = updatedUsername;
+        foundReview.reviewContent = updatedReview;
 
-  // 사용자에게 비밀번호 입력 받기
-  const userEnteredPassword = prompt("리뷰를 삭제하려면 비밀번호를 입력하세요:");
+        localStorage.setItem(reviewKey, JSON.stringify(storedReviews));
+        alert("리뷰가 수정되었습니다.");
 
-  // 입력한 비밀번호와 저장된 비밀번호 비교
-  const foundReview = storedReviews.find((a)=> a.passwordContent === userEnteredPassword);
-  if (foundReview) {
-    // 사용자가 입력한 비밀번호와 저장된 비밀번호가 일치하면 삭제 진행
-    const confirmDelete = confirm("정말로 이 리뷰를 삭제하시겠습니까?");
-
-    if (confirmDelete) {
-      localStorage.removeItem(reviewKey);
-      alert("리뷰가 삭제되었습니다.");
-
-      // 삭제 후에 저장된 리뷰를 다시 표시
-      displayReviews(title);
+        // 수정 후에 저장된 리뷰를 다시 표시
+        displayReviews(title);
+      }
+    } else {
+      alert("비밀번호가 일치하지 않습니다. 수정 권한이 없습니다.");
     }
-  } else {
-    alert("비밀번호가 일치하지 않습니다. 삭제 권한이 없습니다.");
   }
-}
+
+
+  // 리뷰 삭제하기
+  function deleteReview(reviewKey) {
+    // 리뷰 데이터 가져오기
+    const storedReviews = JSON.parse(localStorage.getItem(title));
+
+    if (!storedReviews) {
+      alert("삭제할 리뷰를 찾을 수 없습니다.");
+      return;
+    }
+
+    // 사용자에게 비밀번호 입력 받기
+    const userEnteredPassword = prompt("리뷰를 삭제하려면 비밀번호를 입력하세요:");
+
+    // 입력한 비밀번호와 저장된 비밀번호 비교
+    const foundReview = storedReviews.find((a) => a.passwordContent === userEnteredPassword);
+    if (foundReview) {
+      // 사용자가 입력한 비밀번호와 저장된 비밀번호가 일치하면 삭제 진행
+      const confirmDelete = confirm("정말로 이 리뷰를 삭제하시겠습니까?");
+
+      if (confirmDelete) {
+        localStorage.removeItem(reviewKey);
+        alert("리뷰가 삭제되었습니다.");
+
+        // 삭제 후에 저장된 리뷰를 다시 표시
+        displayReviews(title);
+      }
+    } else {
+      alert("비밀번호가 일치하지 않습니다. 삭제 권한이 없습니다.");
+    }
+  }
 };
 
