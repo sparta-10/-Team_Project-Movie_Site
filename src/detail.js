@@ -48,6 +48,7 @@ window.onload = async function () {
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
+
   displayReviews(title);
   // 페이지가 로드 되자마자 이전에 작성했던 리뷰들이 보여지게 하기 위해서 위쪽에 위치시킴
 
@@ -67,6 +68,7 @@ window.onload = async function () {
 
       if (username && review && password) {
         submitReview(username, review, password, title);
+        displayReviews(title);
       }
       if (!username) {
         alert("작성자를 입력해주세요.");
