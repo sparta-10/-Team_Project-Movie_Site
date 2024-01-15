@@ -7,9 +7,9 @@ const options = {
   }
 };
 
-export let movies = [];
+export let movies = []; // 영화 데이터를 배열에 저장
 export let genres = [];
-export let filteredMovies = [];
+export let filteredMovies = []; // 영화 데이터를 검색어로 필터링된 배열에 저장
 
 export function setFilteredMovies(movies) {
   filteredMovies = movies;
@@ -82,14 +82,14 @@ export function makeMovieCards(movies) {
   modalBtn.forEach((a) => {
     a.addEventListener("click", () => {
       modal.style.display = "block";
-      openClose();
+      toggleMovies();
     });
   });
 
   const closebtn = document.getElementById("closebtn");
   closebtn.addEventListener("click", () => {
     modal.style.display = "none";
-    openClose();
+    toggleMovies();
   });
 }
 
@@ -107,7 +107,7 @@ export function showMovies() {
 }
 
 // 영화 목록 보기 버튼 클릭 시 토글하는 함수
-export function openClose() {
+export function toggleMovies() {
   let cards = document.querySelectorAll(".movieCard");
 
   // none이면 block으로, block이면 none으로
