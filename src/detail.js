@@ -10,9 +10,10 @@ const options = {
   }
 };
 
+let selectedMovie = []; // 영화 정보를 저장할 변수
 let cast = [];
 let slicedCast = [];
-let selectedMovie; // 영화 정보를 저장할 변수
+let detail = [];
 
 async function fetchCredits() {
   let urlParams = new URLSearchParams(window.location.search);
@@ -27,11 +28,15 @@ async function fetchCredits() {
 
   if (selectedMovie) {
     // 영화 정보가 있다면 credits를 가져오는 API 호출
-    await fetch(`https://api.themoviedb.org/3/movie/${selectedMovie.id}/credits?language=ko-KR`, options)
-      .then((response) => response.json())
-      .then((response) => {
-        cast = response.cast;
+    await Promise.all([
+      fetch(`https://api.themoviedb.org/3/movie/${selectedMovie.id}/credits?language=ko-KR`, options),
+      fetch(`https://api.themoviedb.org/3/movie/${selectedMovie.id}?language=ko-KR`, options)
+    ])
+      .then((responses) => Promise.all(responses.map((response) => response.json())))
+      .then(([creditsResponse, detailResponse]) => {
+        cast = creditsResponse.cast;
         slicedCast = cast.slice(0, 3);
+        detail = detailResponse;
       })
       .catch((err) => console.error(err));
   } else {
@@ -80,14 +85,16 @@ window.onload = async function () {
   movieGenre.textContent = `장르: ${receivedGenre}`;
   const movieImg = document.getElementById("movie-img"); // 이미지
   movieImg.src = `https://image.tmdb.org/t/p/w500${dictionary(receivedData).img}`;
+  const movieRunTime = document.getElementById("runtime"); // 상영시간
+  movieRunTime.textContent = `상영 시간 : ${detail.runtime}분`;
   const movieAverage = document.getElementById("vote_average"); // 평점
-  movieAverage.textContent = `평점: ${dictionary(receivedData).average}`;
+  movieAverage.textContent = `평점: ${dictionary(receivedData).average.toFixed(1)}`;
   const movieOverview = document.getElementById("overview"); // 줄거리
   movieOverview.textContent = `줄거리: ${dictionary(receivedData).overview}`;
   const movieActor = document.getElementById("actor"); // 배우
   movieActor.textContent = `배우: ${slicedCast.map((actor) => actor.name).join(", ")}`;
   //const movieActorImg = document.getElementById("actor-img"); // 배우 이미지
-  // movieActorImg.textContent = `https://image.tmdb.org/t/p/w500${profile_path}`;
+  // movieActorImg.textContent = `https://image.tmdb.org/t/p/w500${slicedCast.profile_path}`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
