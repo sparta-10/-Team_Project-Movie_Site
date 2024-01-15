@@ -1,6 +1,44 @@
 import { getMovies, fetchMovies } from "./movie.js";
 import { displayReviews, submitReview } from "./review.js";
 
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYmQzZmI5OTkyMjA2MjRiM2U3MmZlN2RmYTNmZDllOCIsInN1YiI6IjY1OTZkZDYyZWEzN2UwMDZmYTRjZDVkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gq8AghSSWR5zlZngutCS3V1eRtf8JDANW3gZOJpOIUA"
+  }
+};
+
+let cast = [];
+let slicedCast = [];
+let selectedMovie; // 영화 정보를 저장할 변수
+
+async function fetchCredits() {
+  let urlParams = new URLSearchParams(window.location.search);
+  let receivedData = urlParams.get("data");
+
+  // fetchMovies 함수 호출하여 영화 정보 가져오기
+  await fetchMovies();
+
+  const movies = getMovies();
+  // receivedData와 일치하는 영화 찾기
+  selectedMovie = movies.find((movie) => movie.id.toString() === receivedData);
+
+  if (selectedMovie) {
+    // 영화 정보가 있다면 credits를 가져오는 API 호출
+    await fetch(`https://api.themoviedb.org/3/movie/${selectedMovie.id}/credits?language=ko-KR`, options)
+      .then((response) => response.json())
+      .then((response) => {
+        cast = response.cast;
+        slicedCast = cast.slice(0, 3);
+      })
+      .catch((err) => console.error(err));
+  } else {
+    console.error("영화를 찾을 수 없습니다.");
+  }
+}
+
 window.onload = async function () {
   // window 시작하자마자
   let urlParams = new URLSearchParams(window.location.search);
@@ -32,6 +70,7 @@ window.onload = async function () {
     };
   }
 
+  await fetchCredits();
   // 상세페이지에 정보 넣기
   const movieTitleContent = document.getElementById("modal-title"); // 제목
   movieTitleContent.textContent = `${dictionary(receivedData).title}`;
@@ -45,6 +84,8 @@ window.onload = async function () {
   movieAverage.textContent = `평점: ${dictionary(receivedData).average}`;
   const movieOverview = document.getElementById("overview"); // 줄거리
   movieOverview.textContent = `줄거리: ${dictionary(receivedData).overview}`;
+  const movieActor = document.getElementById("actor"); // 배우
+  movieActor.textContent = `배우: ${slicedCast.map((actor) => actor.name).join(", ")}`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
