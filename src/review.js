@@ -1,6 +1,5 @@
 // 리뷰 보여지게 하는 함수
 export function displayReviews(title) {
-
   const authorItemInput = document.getElementById("username");
   authorItemInput.value = "";
   const reviewItemInput = document.getElementById("review");
@@ -37,7 +36,6 @@ export function displayReviews(title) {
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
 
-
     reviewList.appendChild(listItem);
   });
 }
@@ -59,7 +57,7 @@ export function submitReview(username, review, password, title) {
   console.log("리뷰작성 완료");
 }
 // 리뷰 수정하기
-function editReview(index, title) {
+async function editReview(index, title) {
   // 리뷰 데이터 가져오기
   const storedReviews = JSON.parse(localStorage.getItem(title));
   if (!storedReviews) {
@@ -75,14 +73,19 @@ function editReview(index, title) {
     const updatedReview = prompt("수정된 리뷰 내용:", foundReview.reviewContent);
 
     if (updatedUsername !== null && updatedReview !== null) {
-      foundReview.usernameContent = updatedUsername;
-      foundReview.reviewContent = updatedReview;
+      await Promise.resolve().then(() => {
+        foundReview.usernameContent = updatedUsername;
+        foundReview.reviewContent = updatedReview;
 
-      localStorage.setItem(title, JSON.stringify(storedReviews));
-      alert("리뷰가 수정되었습니다.");
+        localStorage.setItem(title, JSON.stringify(storedReviews));
+        alert("리뷰가 수정되었습니다.");
+      });
+      // 수정 또는 삭제가 완료된 다음에 삭제된 내용이 반영된 거를 보여주고 싶어서 async / await로 순서를 정하고 싶었음
+      // 근데 await 뒤에는 Promise를 반환하는 비동기함수가 와야 하는데 localstorage는 동기함수로 올 수 없음
+      // => localstorage 자체를 Promise.resolve로 Promise의 resolve 상태를 반환하는 비동기함수로 만들어 준 다음 앞에 await 걸음
 
       // 수정 후에 저장된 리뷰를 다시 표시
-      displayReviews(title, usernameA, reviewA, passwordA);
+      displayReviews(title);
     }
   } else {
     alert("비밀번호가 일치하지 않습니다. 수정 권한이 없습니다.");
@@ -90,7 +93,7 @@ function editReview(index, title) {
 }
 
 // 리뷰 삭제하기
-function deleteReview(index, title) {
+async function deleteReview(index, title) {
   // 리뷰 데이터 가져오기
   const storedReviews = JSON.parse(localStorage.getItem(title));
   if (!storedReviews) {
@@ -108,13 +111,15 @@ function deleteReview(index, title) {
     const confirmDelete = confirm("정말로 이 리뷰를 삭제하시겠습니까?");
 
     if (confirmDelete) {
-      storedReviews.splice(index, 1); // 해당 인덱스의 리뷰를 1개 삭제
-      localStorage.setItem(title, JSON.stringify(storedReviews));
-      alert("리뷰가 삭제되었습니다.");
+      await Promise.resolve().then(() => {
+        storedReviews.splice(index, 1);
+        // 해당 인덱스의 리뷰를 1개 삭제
+        localStorage.setItem(title, JSON.stringify(storedReviews));
+        alert("리뷰가 삭제되었습니다.");
+      });
 
       // 삭제 후에 저장된 리뷰를 다시 표시
-
-      displayReviews(title, usernameA, reviewA, passwordA);
+      displayReviews(title);
     }
   } else {
     alert("비밀번호가 일치하지 않습니다. 삭제 권한이 없습니다.");
