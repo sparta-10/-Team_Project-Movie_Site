@@ -86,6 +86,8 @@ window.onload = async function () {
   movieOverview.textContent = `줄거리: ${dictionary(receivedData).overview}`;
   const movieActor = document.getElementById("actor"); // 배우
   movieActor.textContent = `배우: ${slicedCast.map((actor) => actor.name).join(", ")}`;
+  //const movieActorImg = document.getElementById("actor-img"); // 배우 이미지
+  // movieActorImg.textContent = `https://image.tmdb.org/t/p/w500${profile_path}`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
