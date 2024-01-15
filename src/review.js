@@ -1,5 +1,6 @@
 // 리뷰 보여지게 하는 함수
 export function displayReviews(title) {
+
   const authorItemInput = document.getElementById("username");
   authorItemInput.value = "";
   const reviewItemInput = document.getElementById("review");
@@ -35,6 +36,7 @@ export function displayReviews(title) {
     listItem.appendChild(reviewItem);
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
+
 
     reviewList.appendChild(listItem);
   });
@@ -111,6 +113,7 @@ function deleteReview(index, title) {
       alert("리뷰가 삭제되었습니다.");
 
       // 삭제 후에 저장된 리뷰를 다시 표시
+
       displayReviews(title, usernameA, reviewA, passwordA);
     }
   } else {

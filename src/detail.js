@@ -68,8 +68,10 @@ window.onload = async function () {
 
       if (username && review && password) {
         submitReview(username, review, password, title);
+
         displayReviews(title);
       }
+    
       if (!username) {
         alert("작성자를 입력해주세요.");
         return;
