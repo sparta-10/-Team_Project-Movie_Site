@@ -16,15 +16,19 @@ export function setFilteredMovies(movies) {
 }
 
 export function fetchMovies() {
-  Promise.all([
-    fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", options),
-    fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko", options)
-  ])
+  const apiCalls = [];
+  for (let i = 0; i < 12; i++) {
+    apiCalls.push(fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=${i + 1}`, options));
+  }
 
+  Promise.all([fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko", options), ...apiCalls])
     .then((responses) => Promise.all(responses.map((response) => response.json())))
-    .then(([moviesResponse, genresResponse]) => {
-      movies = moviesResponse.results; // 영화 데이터를 배열에 저장
-      filteredMovies = moviesResponse.results; // 영화 데이터를 검색어로 필터링된 배열에 저장
+    .then(([genresResponse, ...responses]) => {
+      responses.forEach((response) => {
+        movies.push(...response.results);
+        filteredMovies.push(...response.results);
+      });
+
       genres = genresResponse.genres; // 장르 데이터를 배열에 저장
 
       makeMovieCards(movies); // 영화 카드 만들기 함수 호출
