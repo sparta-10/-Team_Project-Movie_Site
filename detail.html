@@ -41,21 +41,19 @@
       <footer>
         <form id="reviewForm" class="reviewForm">
           <div class="reviewFormAll">
-          <label for="username">작성자</label>
-          <!-- autocomplete=자동완성기능. -->
-          <input type="text" id="username" class="username" required="" autocomplete="on" placeholder="작성자"/>
+            <label for="username">작성자</label>
+            <input type="text" id="username" class="username" required="" placeholder="작성자" />
           </div>
           <div class="reviewFormAll">
-          <label for="review">리뷰</label>
-          <textarea id="review" class="review" required="" placeholder="리뷰내용"></textarea>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" class="password" required="" placeholder="비밀번호" />
           </div>
           <div class="reviewFormAll">
-          <label for="password">비밀번호</label>
-          <input type="password" id="password" class="password" required="" placeholder="비밀번호"/>
+            <label for="review">리뷰</label>
+            <textarea id="review" class="review" required="" placeholder="리뷰내용"></textarea>
           </div>
           <button type="button" id="submitReviewButton" class="submitReviewButton">리뷰 작성</button>
         </form>
-
         <ul id="reviewList"></ul>
       </footer>
     </div>
