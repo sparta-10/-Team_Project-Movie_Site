@@ -34,7 +34,7 @@ window.onload = async function () {
 
   // 상세페이지에 정보 넣기
   const movieTitleContent = document.getElementById("modal-title"); // 제목
-  movieTitleContent.textContent = `제목 : ${dictionary(receivedData).title}`;
+  movieTitleContent.textContent = `영화 제목 : ${dictionary(receivedData).title}`;
   const releaseDateContent = document.querySelector("#release_date"); // 개봉일
   releaseDateContent.textContent = `개봉일: ${dictionary(receivedData).release_date}`;
   const movieGenre = document.querySelector("#name"); // 장르
@@ -44,7 +44,7 @@ window.onload = async function () {
   const movieAverage = document.getElementById("vote_average");
   movieAverage.textContent = `평점: ${dictionary(receivedData).average}`;
   const movieOverview = document.getElementById("overview");
-  movieOverview.textContent = `평점: ${dictionary(receivedData).overview}`;
+  movieOverview.textContent = `줄거리: ${dictionary(receivedData).overview}`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
@@ -71,7 +71,7 @@ window.onload = async function () {
 
         displayReviews(title);
       }
-    
+
       if (!username) {
         alert("작성자를 입력해주세요.");
         return;
