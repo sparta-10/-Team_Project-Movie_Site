@@ -8,11 +8,12 @@ const options = {
 };
 
 export let movies = [];
+export let genres = [];
 export let filteredMovies = [];
+
 export function setFilteredMovies(movies) {
   filteredMovies = movies;
 }
-export let genres = [];
 
 export function fetchMovies() {
   Promise.all([
@@ -124,7 +125,7 @@ export function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// 제목 내림차순 정렬
+// 제목 오름차순 정렬
 export function sortByTitle() {
   const sortedTitle = filteredMovies.slice().sort((a, b) => {
     return a.title.localeCompare(b.title);
@@ -140,4 +141,31 @@ export function sortByRate() {
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);
+}
+
+// 개봉일 내림차순 정렬 (최신순)
+export function sortByNewDate() {
+  const sortedNewDate = filteredMovies.slice().sort((a, b) => {
+    // 올바른 비교 수행 위해 release_date 문자열을 Date 객체로 변환
+    const dateA = new Date(a.release_date);
+    const dateB = new Date(b.release_date);
+
+    // Date 객체를 비교
+    return dateB - dateA;
+  });
+
+  // 정렬된 영화 데이터로 카드 업데이트
+  makeMovieCards(sortedNewDate);
+}
+
+// 개봉일 오름차순 정렬 (오래된순)
+export function sortByOldDate() {
+  const sortedOldDate = filteredMovies.slice().sort((a, b) => {
+    const dateA = new Date(a.release_date);
+    const dateB = new Date(b.release_date);
+
+    return dateA - dateB;
+  });
+  // 정렬된 영화 데이터로 카드 업데이트
+  makeMovieCards(sortedOldDate);
 }

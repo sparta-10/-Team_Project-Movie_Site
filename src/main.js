@@ -7,7 +7,9 @@ import {
   openClose,
   scrollToTop,
   sortByTitle,
-  sortByRate
+  sortByRate,
+  sortByNewDate,
+  sortByOldDate
 } from "./movie.js";
 import { searchMovies } from "./search.js";
 import { submitReview } from "./review.js";
@@ -61,4 +63,10 @@ document.getElementById("sortByTitleBtn").addEventListener("click", () => {
 });
 document.getElementById("sortByRateBtn").addEventListener("click", () => {
   sortByRate();
+});
+document.getElementById("sortByNewDateBtn").addEventListener("click", () => {
+  sortByNewDate();
+});
+document.getElementById("sortByOldDateBtn").addEventListener("click", () => {
+  sortByOldDate();
 });
