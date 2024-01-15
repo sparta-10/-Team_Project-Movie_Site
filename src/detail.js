@@ -34,7 +34,7 @@ window.onload = async function () {
 
   // 상세페이지에 정보 넣기
   const movieTitleContent = document.getElementById("modal-title"); // 제목
-  movieTitleContent.textContent = `영화 제목 : ${dictionary(receivedData).title}`;
+  movieTitleContent.textContent = `제목 : ${dictionary(receivedData).title}`;
   const releaseDateContent = document.querySelector("#release_date"); // 개봉일
   releaseDateContent.textContent = `개봉일: ${dictionary(receivedData).release_date}`;
   const movieGenre = document.querySelector("#name"); // 장르
