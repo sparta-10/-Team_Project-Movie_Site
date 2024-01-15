@@ -33,7 +33,7 @@ window.onload = async function () {
   const movieTitleContent = document.getElementById("modal-title");
   movieTitleContent.textContent = `제목 : ${dictionary(receivedData).title}`;
   const releaseDateContent = document.querySelector("#release_date");
-  releaseDateContent.textContent = `개봉일: ${dictionary(receivedData).release_date}`;
+  releaseDateContent.textContent = `개봉일 : ${dictionary(receivedData).release_date}`;
   // 제목, 개봉일 말고 다른 것들 추가해야 합니다.
 
   function displayReviews(title) {
