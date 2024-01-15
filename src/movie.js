@@ -30,9 +30,6 @@ export async function fetchMovies() {
       });
 
       genres = genresResponse.genres; // 장르 데이터를 배열에 저장
-
-      makeMovieCards(movies); // 영화 카드 만들기 함수 호출
-      hideMovies(); // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로
     })
     .catch((err) => console.error(err));
 }
