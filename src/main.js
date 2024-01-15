@@ -29,7 +29,7 @@ function setToggleMovies() {
 
 function setScrollToTop() {
   // 클릭 이벤트 발생 시 scrollToTop 함수 호출
-  document.getElementById("toTop").addEventListener("click", scrollToTop);
+  document.getElementById("toTopBtn").addEventListener("click", scrollToTop);
 }
 
 // 정렬 버튼에 이벤트 등록 -> 클릭 시 정렬 함수 호출
@@ -48,3 +48,35 @@ function setSortByNewDate() {
 function setSortByOldDate() {
   document.getElementById("sortByOldDateBtn").addEventListener("click", sortByOldDate);
 }
+
+/*function setSortByTitle() {
+  const sortByTitleBtn = document.getElementById("sortByTitleBtn");
+  if (sortByTitleBtn) {
+    // 요소가 존재하는 경우에만 이벤트 리스너 추가
+    sortByTitleBtn.addEventListener("click", sortByTitle);
+  }
+}
+
+function setSortByRate() {
+  const sortByRateBtn = document.getElementById("sortByRateBtn");
+  if (sortByRateBtn) {
+    // 요소가 존재하는 경우에만 이벤트 리스너 추가
+    sortByRateBtn.addEventListener("click", sortByRate);
+  }
+}
+
+function setSortByNewDate() {
+  const sortByNewDateBtn = document.getElementById("sortByNewDateBtn");
+  if (sortByNewDateBtn) {
+    // 요소가 존재하는 경우에만 이벤트 리스너 추가
+    sortByNewDateBtn.addEventListener("click", sortByNewDate);
+  }
+}
+
+function setSortByOldDate() {
+  const sortByOldDateBtn = document.getElementById("sortByOldDateBtn");
+  if (sortByOldDateBtn) {
+    // 요소가 존재하는 경우에만 이벤트 리스너 추가
+    sortByOldDateBtn.addEventListener("click", sortByOldDate);
+  }
+}*/

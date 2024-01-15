@@ -8,11 +8,18 @@ const options = {
 };
 
 export let movies = []; // 영화 데이터를 배열에 저장
-export let genres = [];
 export let filteredMovies = []; // 영화 데이터를 검색어로 필터링된 배열에 저장
+export let genres = [];
+// export let credits = [];
 
 export function setFilteredMovies(movies) {
   filteredMovies = movies;
+}
+
+export async function renderMovies() {
+  await fetchMovies();
+  makeMovieCards(movies); // 영화 카드 만들기 함수 호출
+  hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
 }
 
 export async function fetchMovies() {
@@ -21,7 +28,7 @@ export async function fetchMovies() {
     apiCalls.push(fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=${i + 1}`, options));
   }
 
-  await Promise.all([fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko", options), ...apiCalls])
+  await Promise.all([fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko-KR", options), ...apiCalls])
     .then((responses) => Promise.all(responses.map((response) => response.json())))
     .then(([genresResponse, ...responses]) => {
       responses.forEach((response) => {
@@ -34,11 +41,15 @@ export async function fetchMovies() {
     .catch((err) => console.error(err));
 }
 
-export async function renderMovies() {
-  await fetchMovies();
-  makeMovieCards(movies); // 영화 카드 만들기 함수 호출
-  hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
-}
+/*export async function fetchCredits() {
+  fetch(`https://api.themoviedb.org/3/movie/${movie.id}/credits?language=ko-KR`, options)
+    .then((response) => response.json())
+    .then((response) => {
+      credits = response.credits;
+      console.log(credits);
+    })
+    .catch((err) => console.error(err));
+}*/
 
 export const getMovies = () => movies; // function getMovies () { return movies } 랑 똑같은 애
 export const getGenres = () => genres;
@@ -86,21 +97,6 @@ export function makeMovieCards(movies) {
             `;
     moviesBox.insertAdjacentHTML("beforeend", template);
   });
-
-  const modal = document.getElementById("modal");
-  const modalBtn = document.querySelectorAll(".modalBtn");
-  modalBtn.forEach((a) => {
-    a.addEventListener("click", () => {
-      modal.style.display = "block";
-      toggleMovies();
-    });
-  });
-
-  const closebtn = document.getElementById("closebtn");
-  closebtn.addEventListener("click", () => {
-    modal.style.display = "none";
-    toggleMovies();
-  });
 }
 
 // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로 만드는 함수
@@ -134,7 +130,7 @@ export function scrollToTop() {
 
 // 제목 오름차순 정렬
 export function sortByTitle() {
-  const sortedTitle = filteredMovies.slice().sort((a, b) => a.title.localeCompare(b.title));
+  const sortedTitle = filteredMovies.sort((a, b) => a.title.localeCompare(b.title));
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
@@ -142,7 +138,7 @@ export function sortByTitle() {
 
 // 평점 내림차순 정렬
 export function sortByRate() {
-  const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
+  const sortedRate = filteredMovies.sort((a, b) => b.vote_average - a.vote_average);
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);
@@ -150,7 +146,7 @@ export function sortByRate() {
 
 // 개봉일 내림차순 정렬 (최신순)
 export function sortByNewDate() {
-  const sortedNewDate = filteredMovies.slice().sort((a, b) => {
+  const sortedNewDate = filteredMovies.sort((a, b) => {
     // 올바른 비교 수행 위해 release_date 문자열을 Date 객체로 변환
     const dateA = new Date(a.release_date);
     const dateB = new Date(b.release_date);
@@ -165,7 +161,7 @@ export function sortByNewDate() {
 
 // 개봉일 오름차순 정렬 (오래된순)
 export function sortByOldDate() {
-  const sortedOldDate = filteredMovies.slice().sort((a, b) => {
+  const sortedOldDate = filteredMovies.sort((a, b) => {
     const dateA = new Date(a.release_date);
     const dateB = new Date(b.release_date);
 
