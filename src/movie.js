@@ -70,7 +70,9 @@ export function makeMovieCards(movies) {
             <p class="movieGenre">${genreList}</p>
             <p class="movieOverview">${movie.overview}</p>
             <p class="movieRate"><span class="star">⭐ ${movie.vote_average.toFixed(1)}</span></p>
-            <a id="movie-info-btn" href="/detail.html?data=${movie.id}">자세히보기</a>
+            <a id="movie-info-btn" href="/detail.html?data=${movie.id}&genreList=${encodeURIComponent(
+      genreList
+    )}">자세히보기</a>
             </li>
             </div>
             `;

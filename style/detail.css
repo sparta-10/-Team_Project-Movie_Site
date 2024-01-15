@@ -73,6 +73,7 @@ body {
   display: block;
   width: 90%;
   height: 90%;
+  border-radius: 8px;
 }
 
 .reviewForm {
@@ -87,7 +88,6 @@ body {
   flex-direction: row;
   align-items: center;
   margin: 20px auto;
-  
 }
 
 .reviewFormAll > label {
