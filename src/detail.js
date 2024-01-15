@@ -85,7 +85,7 @@ window.onload = async function () {
   movieGenre.textContent = `장르: ${receivedGenre}`;
   const movieImg = document.getElementById("movie-img"); // 이미지
   movieImg.src = `https://image.tmdb.org/t/p/w500${dictionary(receivedData).img}`;
-  const movieRunTime = document.getElementById("runtime"); // 상영시간
+  const movieRunTime = document.getElementById("runtime"); // 상영 시간
   movieRunTime.textContent = `상영 시간 : ${detail.runtime}분`;
   const movieAverage = document.getElementById("vote_average"); // 평점
   movieAverage.textContent = `평점: ${dictionary(receivedData).average.toFixed(1)}`;
@@ -93,8 +93,17 @@ window.onload = async function () {
   movieOverview.textContent = `줄거리: ${dictionary(receivedData).overview}`;
   const movieActor = document.getElementById("actor"); // 배우
   movieActor.textContent = `배우: ${slicedCast.map((actor) => actor.name).join(", ")}`;
-  //const movieActorImg = document.getElementById("actor-img"); // 배우 이미지
-  // movieActorImg.textContent = `https://image.tmdb.org/t/p/w500${slicedCast.profile_path}`;
+  const movieActorImgContainer = document.getElementById("actor-img-container"); // 배우 이미지
+  movieActorImgContainer.innerHTML = ""; // 이전 이미지 제거
+  slicedCast.forEach((actor) => {
+    const actorImg = document.createElement("img");
+    actorImg.src = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
+    actorImg.alt = `${actor.name} 이미지`;
+    actorImg.classList.add("actor-img");
+    movieActorImgContainer.appendChild(actorImg);
+  });
+  console.log("Image created for:", actor.profile_path);
+  console.log(movieActorImgContainer);
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
