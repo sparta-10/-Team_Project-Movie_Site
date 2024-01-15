@@ -1,11 +1,20 @@
 // 리뷰 보여지게 하는 함수
 export function displayReviews(title) {
+
+  const authorItemInput = document.getElementById("username");
+  authorItemInput.value = "";
+  const reviewItemInput = document.getElementById("review");
+  reviewItemInput.value = "";
+  const passwordInput = document.getElementById("password");
+  passwordInput.value = "";
+
   const reviewList = document.getElementById("reviewList");
   reviewList.innerHTML = ""; // 기존 목록 비우기
 
   const storedReviews = JSON.parse(localStorage.getItem(title)) || [];
   storedReviews.forEach((reviewData, index) => {
     const listItem = document.createElement("div");
+
     const authorItem = document.createElement("li");
     authorItem.textContent = `작성자 : ${reviewData.usernameContent}`;
 
@@ -28,6 +37,7 @@ export function displayReviews(title) {
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
 
+
     reviewList.appendChild(listItem);
   });
 }
@@ -47,8 +57,6 @@ export function submitReview(username, review, password, title) {
   localStorage.setItem(title, JSON.stringify(storedReviews));
   alert("리뷰가 작성되었습니다.");
   console.log("리뷰작성 완료");
-
-  displayReviews(title);
 }
 // 리뷰 수정하기
 function editReview(index, title) {
@@ -74,7 +82,7 @@ function editReview(index, title) {
       alert("리뷰가 수정되었습니다.");
 
       // 수정 후에 저장된 리뷰를 다시 표시
-      displayReviews(title);
+      displayReviews(title, usernameA, reviewA, passwordA);
     }
   } else {
     alert("비밀번호가 일치하지 않습니다. 수정 권한이 없습니다.");
@@ -105,7 +113,8 @@ function deleteReview(index, title) {
       alert("리뷰가 삭제되었습니다.");
 
       // 삭제 후에 저장된 리뷰를 다시 표시
-      displayReviews(title);
+
+      displayReviews(title, usernameA, reviewA, passwordA);
     }
   } else {
     alert("비밀번호가 일치하지 않습니다. 삭제 권한이 없습니다.");
