@@ -53,6 +53,8 @@ export function makeMovieCards(movies) {
     return splitDate.join(".");
   }
 
+  moviesBox.innerHTML = ""; // 기존 카드 비우기
+
   movies.forEach((movie) => {
     // 영화의 장르 Id 가져오기
     // || [] : movie.genre_ids가 null 또는 undefined인 경우,
@@ -132,19 +134,7 @@ export function scrollToTop() {
 
 // 제목 오름차순 정렬
 export function sortByTitle() {
-  const sortedTitle = movies.slice().sort((a, b) => {
-    const titleA = a.title.toLowerCase();
-    const titleB = b.title.toLowerCase();
-    return titleA.localeCompare(titleB);
-  });
-
-  // 기존의 영화 리스트 비우기
-  const moviesBox = document.getElementById("movieCardList");
-  moviesBox.innerHTML = "";
-
-  //   const sortedTitle = filteredMovies.slice().sort((a, b) => {
-  //     return a.title.localeCompare(b.title);
-  //   });
+  const sortedTitle = filteredMovies.slice().sort((a, b) => a.title.localeCompare(b.title));
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
@@ -152,13 +142,7 @@ export function sortByTitle() {
 
 // 평점 내림차순 정렬
 export function sortByRate() {
-  const sortedRate = movies.slice().sort((a, b) => b.vote_average - a.vote_average);
-
-  // Clear the existing content of moviesBox
-  const moviesBox = document.getElementById("movieCardList");
-  moviesBox.innerHTML = "";
-
-  //   const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
+  const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);
@@ -187,6 +171,7 @@ export function sortByOldDate() {
 
     return dateA - dateB;
   });
+
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedOldDate);
 }
