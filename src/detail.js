@@ -41,7 +41,7 @@ window.onload = async function () {
     reviewList.innerHTML = ""; // 기존 목록 비우기
 
     const storedReviews = JSON.parse(localStorage.getItem(title)) || [];
-    storedReviews.forEach((reviewData) => {
+    storedReviews.forEach((reviewData, index) => {
       const listItem = document.createElement("div");
       const authorItem = document.createElement('li');
       authorItem.textContent = `작성자 : ${reviewData.usernameContent}`;
@@ -52,12 +52,12 @@ window.onload = async function () {
       // 수정 버튼 생성 및 클릭 이벤트 추가
       const editButton = document.createElement("button");
       editButton.textContent = "수정";
-      editButton.addEventListener("click", () => editReview(title)); // 리뷰 키 전달
+      editButton.addEventListener("click", () => editReview(index)); // 리뷰 키 전달
 
       // 삭제 버튼 생성 및 클릭 이벤트 추가
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "삭제";
-      deleteButton.addEventListener("click", () => deleteReview(title)); // 리뷰 키 전달
+      deleteButton.addEventListener("click", () => deleteReview(index)); // 리뷰 키 전달
 
       // 버튼들을 리스트 아이템에 추가
       listItem.appendChild(authorItem);
@@ -128,7 +128,7 @@ window.onload = async function () {
   );
 
   // 리뷰 수정하기
-  function editReview(reviewKey) {
+  function editReview(index) {
     // 리뷰 데이터 가져오기
     const storedReviews = JSON.parse(localStorage.getItem(title));
 
@@ -140,8 +140,8 @@ window.onload = async function () {
     const userEnteredPassword = prompt("비밀번호를 입력하세요:");
 
     // 입력한 비밀번호와 저장된 비밀번호 비교하면서 수정
-    const foundReview = storedReviews.find((a) => a.passwordContent === userEnteredPassword);
-    if (foundReview) {
+    const foundReview = storedReviews[index];
+    if (foundReview && foundReview.passwordContent === userEnteredPassword) {
       const updatedUsername = prompt("수정된 작성자 이름:", foundReview.usernameContent);
       const updatedReview = prompt("수정된 리뷰 내용:", foundReview.reviewContent);
 
@@ -162,7 +162,7 @@ window.onload = async function () {
 
 
   // 리뷰 삭제하기
-  function deleteReview(reviewKey) {
+  function deleteReview(index) {
     // 리뷰 데이터 가져오기
     const storedReviews = JSON.parse(localStorage.getItem(title));
 
@@ -173,15 +173,18 @@ window.onload = async function () {
 
     // 사용자에게 비밀번호 입력 받기
     const userEnteredPassword = prompt("리뷰를 삭제하려면 비밀번호를 입력하세요:");
+  
+    // storedReviews에서 특정 인덱스의 리뷰 데이터들을 가져옴
+    const foundReview = storedReviews[index];
 
     // 입력한 비밀번호와 저장된 비밀번호 비교
-    const foundReview = storedReviews.find((a) => a.passwordContent === userEnteredPassword);
-    if (foundReview) {
+    if (foundReview && foundReview.passwordContent === userEnteredPassword) {
       // 사용자가 입력한 비밀번호와 저장된 비밀번호가 일치하면 삭제 진행
       const confirmDelete = confirm("정말로 이 리뷰를 삭제하시겠습니까?");
 
       if (confirmDelete) {
-        localStorage.removeItem(reviewKey);
+        storedReviews.splice(index, 1); // 해당 인덱스의 리뷰를 1개 삭제
+        localStorage.setItem(title, JSON.stringify(storedReviews));
         alert("리뷰가 삭제되었습니다.");
 
         // 삭제 후에 저장된 리뷰를 다시 표시
