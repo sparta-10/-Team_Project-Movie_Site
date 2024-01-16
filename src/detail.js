@@ -75,7 +75,9 @@ window.onload = async function () {
     };
   }
 
+  // credits 데이터 가져오기
   await fetchCredits();
+
   // 상세페이지에 정보 넣기
   const movieTitleContent = document.getElementById("modal-title"); // 제목
   movieTitleContent.textContent = `${dictionary(receivedData).title}`;
@@ -92,7 +94,7 @@ window.onload = async function () {
   const movieOverview = document.getElementById("overview"); // 줄거리
   movieOverview.textContent = `줄거리: ${dictionary(receivedData).overview}`;
   const movieActor = document.getElementById("actor"); // 배우
-  movieActor.textContent = `배우: ${slicedCast.map((actor) => actor.name).join(", ")}`;
+  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(", ")}`;
   const movieActorImgContainer = document.getElementById("actor-img-container"); // 배우 이미지
   movieActorImgContainer.innerHTML = ""; // 이전 이미지 제거
   slicedCast.forEach((actor) => {
@@ -102,8 +104,6 @@ window.onload = async function () {
     actorImg.classList.add("actor-img");
     movieActorImgContainer.appendChild(actorImg);
   });
-  console.log("Image created for:", actor.profile_path);
-  console.log(movieActorImgContainer);
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
