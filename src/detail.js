@@ -93,8 +93,6 @@ window.onload = async function () {
   movieAverage.textContent = `평점 : ${dictionary(receivedData).average.toFixed(1)}`;
   const movieOverview = document.getElementById("overview"); // 줄거리
   movieOverview.textContent = `줄거리 : ${dictionary(receivedData).overview}`;
-  const movieActor = document.getElementById("actor"); // 배우
-  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(", ")}`;
   const movieActorImgContainer = document.getElementById("actor-img-container"); // 배우 이미지
   movieActorImgContainer.innerHTML = ""; // 이전 이미지 제거
   slicedCast.forEach((actor) => {
@@ -104,6 +102,10 @@ window.onload = async function () {
     actorImg.classList.add("actor-img");
     movieActorImgContainer.appendChild(actorImg);
   });
+  const movieActor = document.getElementById("actor"); // 배우
+  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(" | ")}`;
+  const movieCharacter = document.getElementById("character"); // 배우
+  movieCharacter.textContent = `${slicedCast.map((actor) => actor.character).join(" | ")}`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
