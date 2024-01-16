@@ -33,6 +33,6 @@ TMDB API를 사용하여 영화를 소개하고 검색 및 각 영화에 대한 
 ## ✒️ API
 - API 링크
     - 영화 정보 : https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1
-    - 영화 장르 : https://api.themoviedb.org/3/genre/movie/list?language=ko
+    - 영화 장르 : https://api.themoviedb.org/3/genre/movie/list?language=ko-KR
     - 영화 배우 정보 : https://api.themoviedb.org/3/movie/${movie.id}/credits?language=ko-KR
     - 상영 시간 정보 : https://api.themoviedb.org/3/movie/${movie.id}?language=ko-KR
