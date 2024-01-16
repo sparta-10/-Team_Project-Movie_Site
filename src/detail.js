@@ -45,14 +45,14 @@ async function fetchCredits() {
 
 window.onload = async function () {
   // window 시작하자마자
+  await fetchMovies();
+
   let urlParams = new URLSearchParams(window.location.search);
   let receivedData = urlParams.get("data"); // movie.js에 href html?data=${movid.id}라고 저장해두었어서 ${movid.id}를 receivedData에 할당
   console.log(receivedData); // 클릭한 id ex.278
 
   let receivedGenre = urlParams.get("genreList");
   console.log(receivedGenre); // 클릭한 영화의 장르
-
-  await fetchMovies();
 
   const movies = getMovies();
   // const genres = getGenres();
