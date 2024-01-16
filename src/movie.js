@@ -8,11 +8,18 @@ const options = {
 };
 
 export let movies = []; // 영화 데이터를 배열에 저장
-export let genres = [];
 export let filteredMovies = []; // 영화 데이터를 검색어로 필터링된 배열에 저장
+export let genres = [];
+// export let credits = [];
 
 export function setFilteredMovies(movies) {
   filteredMovies = movies;
+}
+
+export async function renderMovies() {
+  await fetchMovies();
+  makeMovieCards(movies); // 영화 카드 만들기 함수 호출
+  hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
 }
 
 export async function fetchMovies() {
@@ -21,7 +28,7 @@ export async function fetchMovies() {
     apiCalls.push(fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=${i + 1}`, options));
   }
 
-  await Promise.all([fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko", options), ...apiCalls])
+  await Promise.all([fetch("https://api.themoviedb.org/3/genre/movie/list?language=ko-KR", options), ...apiCalls])
     .then((responses) => Promise.all(responses.map((response) => response.json())))
     .then(([genresResponse, ...responses]) => {
       responses.forEach((response) => {
@@ -32,12 +39,6 @@ export async function fetchMovies() {
       genres = genresResponse.genres; // 장르 데이터를 배열에 저장
     })
     .catch((err) => console.error(err));
-}
-
-export async function renderMovies() {
-  await fetchMovies();
-  makeMovieCards(movies); // 영화 카드 만들기 함수 호출
-  hideMovies(); // 페이지 로드 시 .movie 숨기기(토글버튼)
 }
 
 export const getMovies = () => movies; // function getMovies () { return movies } 랑 똑같은 애
@@ -52,6 +53,8 @@ export function makeMovieCards(movies) {
     const splitDate = date.split("-");
     return splitDate.join(".");
   }
+
+  moviesBox.innerHTML = ""; // 기존 카드 비우기
 
   movies.forEach((movie) => {
     // 영화의 장르 Id 가져오기
@@ -84,7 +87,6 @@ export function makeMovieCards(movies) {
             `;
     moviesBox.insertAdjacentHTML("beforeend", template);
   });
-
 }
 
 // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로 만드는 함수
@@ -118,19 +120,7 @@ export function scrollToTop() {
 
 // 제목 오름차순 정렬
 export function sortByTitle() {
-  const sortedTitle = filteredMovies.sort((a, b) => {
-    const titleA = a.title.toLowerCase();
-    const titleB = b.title.toLowerCase();
-    return titleA.localeCompare(titleB);
-  });
-
-  // 기존의 영화 리스트 비우기
-  const moviesBox = document.getElementById("movieCardList");
-  moviesBox.innerHTML = "";
-
-  //   const sortedTitle = filteredMovies.slice().sort((a, b) => {
-  //     return a.title.localeCompare(b.title);
-  //   });
+  const sortedTitle = filteredMovies.sort((a, b) => a.title.localeCompare(b.title));
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
@@ -139,12 +129,6 @@ export function sortByTitle() {
 // 평점 내림차순 정렬
 export function sortByRate() {
   const sortedRate = filteredMovies.sort((a, b) => b.vote_average - a.vote_average);
-
-  // Clear the existing content of moviesBox
-  const moviesBox = document.getElementById("movieCardList");
-  moviesBox.innerHTML = "";
-
-  //   const sortedRate = filteredMovies.slice().sort((a, b) => b.vote_average - a.vote_average);
 
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);
@@ -173,6 +157,7 @@ export function sortByOldDate() {
 
     return dateA - dateB;
   });
+
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedOldDate);
 }
