@@ -41,9 +41,6 @@ export function displayReviews(title) {
 }
 // 리뷰 저장하기
 export function submitReview(username, review, password, title) {
-  // const timestamp = new Date().getTime();
-  // const reviewKey = `${title}_${timestamp}`; // 수정된 부분
-
   const storedReviews = JSON.parse(localStorage.getItem(title)) || [];
   // 기존에 리뷰들이 이미 있는지 확인하기 위해 일단 저장된 걸 먼저 가져오고
   const reviewData = {
@@ -74,16 +71,12 @@ async function editReview(index, title) {
 
     if (updatedUsername !== null && updatedReview !== null) {
       await Promise.resolve().then(() => {
+        // localstorage.setItem을 Promise를 반환하는 비동기함수로 만들기 -> 수정된 내용 반영 후 displayReviews
         foundReview.usernameContent = updatedUsername;
         foundReview.reviewContent = updatedReview;
-
         localStorage.setItem(title, JSON.stringify(storedReviews));
         alert("리뷰가 수정되었습니다.");
       });
-      // 수정 또는 삭제가 완료된 다음에 삭제된 내용이 반영된 거를 보여주고 싶어서 async / await로 순서를 정하고 싶었음
-      // 근데 await 뒤에는 Promise를 반환하는 비동기함수가 와야 하는데 localstorage는 동기함수로 올 수 없음
-      // => localstorage 자체를 Promise.resolve로 Promise의 resolve 상태를 반환하는 비동기함수로 만들어 준 다음 앞에 await 걸음
-
       // 수정 후에 저장된 리뷰를 다시 표시
       displayReviews(title);
     }
@@ -102,14 +95,12 @@ async function deleteReview(index, title) {
   }
   // 사용자에게 비밀번호 입력 받기
   const userEnteredPassword = prompt("리뷰를 삭제하려면 비밀번호를 입력하세요:");
-
   // storedReviews에서 특정 인덱스의 리뷰 데이터를 가져옴
   const foundReview = storedReviews[index];
   // 입력한 비밀번호와 특정 인덱스의 저장된 비밀번호와 비교
   if (foundReview && foundReview.passwordContent === userEnteredPassword) {
     // 사용자가 입력한 비밀번호와 저장된 비밀번호가 일치하면 삭제 진행
     const confirmDelete = confirm("정말로 이 리뷰를 삭제하시겠습니까?");
-
     if (confirmDelete) {
       await Promise.resolve().then(() => {
         storedReviews.splice(index, 1);
@@ -117,7 +108,6 @@ async function deleteReview(index, title) {
         localStorage.setItem(title, JSON.stringify(storedReviews));
         alert("리뷰가 삭제되었습니다.");
       });
-
       // 삭제 후에 저장된 리뷰를 다시 표시
       displayReviews(title);
     }

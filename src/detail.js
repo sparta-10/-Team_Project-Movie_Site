@@ -25,7 +25,6 @@ async function fetchCredits() {
   const movies = getMovies();
   // receivedData와 일치하는 영화 찾기
   selectedMovie = movies.find((movie) => movie.id.toString() === receivedData);
-
   if (selectedMovie) {
     // 영화 정보가 있다면 credits를 가져오는 API 호출
     await Promise.all([
