@@ -10,7 +10,6 @@ const options = {
 export let movies = []; // 영화 데이터를 배열에 저장
 export let filteredMovies = []; // 영화 데이터를 검색어로 필터링된 배열에 저장
 export let genres = [];
-// export let credits = [];
 
 export function setFilteredMovies(movies) {
   filteredMovies = movies;
@@ -41,7 +40,7 @@ export async function fetchMovies() {
     .catch((err) => console.error(err));
 }
 
-export const getMovies = () => movies; // function getMovies () { return movies } 랑 똑같은 애
+export const getMovies = () => movies;
 export const getGenres = () => genres;
 
 // 영화 카드 만들기
@@ -92,9 +91,7 @@ export function makeMovieCards(movies) {
 // 페이지 새로고침 시 movieCard가 보이지 않는 것을 기본 값으로 만드는 함수
 export function hideMovies() {
   let cards = document.querySelectorAll(".movieCard");
-
   cards.forEach((card) => (card.style.display = "none"));
-
   // 토글 되어도 배경색 유지 위함
   document.body.style.backgroundColor = "gainsboro";
 }
@@ -102,7 +99,6 @@ export function hideMovies() {
 // 영화 목록 보기 버튼 클릭 시 토글하는 함수
 export function toggleMovies() {
   let cards = document.querySelectorAll(".movieCard");
-
   // none이면 block으로, block이면 none으로
   cards.forEach((card) => {
     if (card.style.display === "none" || card.style.display === "") {
@@ -121,7 +117,6 @@ export function scrollToTop() {
 // 제목 오름차순 정렬
 export function sortByTitle() {
   const sortedTitle = filteredMovies.sort((a, b) => a.title.localeCompare(b.title));
-
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedTitle);
 }
@@ -129,7 +124,6 @@ export function sortByTitle() {
 // 평점 내림차순 정렬
 export function sortByRate() {
   const sortedRate = filteredMovies.sort((a, b) => b.vote_average - a.vote_average);
-
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedRate);
 }
@@ -140,11 +134,9 @@ export function sortByNewDate() {
     // 올바른 비교 수행 위해 release_date 문자열을 Date 객체로 변환
     const dateA = new Date(a.release_date);
     const dateB = new Date(b.release_date);
-
     // Date 객체를 비교
     return dateB - dateA;
   });
-
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedNewDate);
 }
@@ -154,10 +146,8 @@ export function sortByOldDate() {
   const sortedOldDate = filteredMovies.sort((a, b) => {
     const dateA = new Date(a.release_date);
     const dateB = new Date(b.release_date);
-
     return dateA - dateB;
   });
-
   // 정렬된 영화 데이터로 카드 업데이트
   makeMovieCards(sortedOldDate);
 }

@@ -25,7 +25,6 @@ async function fetchCredits() {
   const movies = getMovies();
   // receivedData와 일치하는 영화 찾기
   selectedMovie = movies.find((movie) => movie.id.toString() === receivedData);
-
   if (selectedMovie) {
     // 영화 정보가 있다면 credits를 가져오는 API 호출
     await Promise.all([
@@ -46,14 +45,14 @@ async function fetchCredits() {
 
 window.onload = async function () {
   // window 시작하자마자
+  await fetchMovies();
+
   let urlParams = new URLSearchParams(window.location.search);
   let receivedData = urlParams.get("data"); // movie.js에 href html?data=${movid.id}라고 저장해두었어서 ${movid.id}를 receivedData에 할당
   console.log(receivedData); // 클릭한 id ex.278
 
   let receivedGenre = urlParams.get("genreList");
   console.log(receivedGenre); // 클릭한 영화의 장르
-
-  await fetchMovies();
 
   const movies = getMovies();
   // const genres = getGenres();
