@@ -24,10 +24,13 @@ body {
 }
 
 .modal-header {
-  max-width: 1080px;
-  margin: 30px auto;
-  position: relative;
+  max-width: 880px;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: row-reverse
 }
+
 .modal-header h1 {
   margin: 0 auto;
   text-align: center;
@@ -39,7 +42,6 @@ body {
 #modal-closebtn {
   width: 30px;
   height: 30px;
-  position: absolute;
   right: 0;
   background: none;
   border: none;
@@ -48,10 +50,15 @@ body {
 #modal .modal-main {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1080px;
-  margin: 50px auto;
+  max-width: 880px;
+  margin: 40px auto;
   padding: 0 20px;
   font-family: "Pretendard-Regular" !important;
+}
+
+#modal-title {
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .movie-poster {
@@ -61,7 +68,8 @@ body {
 
 #movie-img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 500px;
+  height: auto;
   flex: 0 0 auto;
 }
 
@@ -129,9 +137,10 @@ textarea {
 #reviewList {
   max-width: 400px;
   margin: 0 auto;
+  margin-bottom: 20px;
   padding: 20px;
   text-align: left;
-  height: 500px;
+  height: auto;
   font-family: "Pretendard-Regular";
   font-size: 18px;
 }
@@ -144,6 +153,7 @@ textarea {
   background-color: #f5f5f5;
   border-radius: 5px;
 }
+
 #reviewList li {
   margin-bottom: 10px;
 }
@@ -172,8 +182,10 @@ button:hover {
 }
 
 .actorInfo {
-  max-width: 1080px;
+  max-width: 880px;
+  height: auto;
   margin: 0 auto;
+  padding: 20px;
   font-family: "Pretendard-Regular";
   text-align: center;
 }
@@ -182,12 +194,19 @@ button:hover {
   margin: 20px auto;
 }
 
+.actorInfo h1 {
+  font-size: 20px;
+}
+
 #actor-img-container {
-  height: 400px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap:wrap;
 }
 
 .actor-img {
   max-width: 100%;
-  max-height: 100%;
-  margin-right: 30px;
+  max-height: 420px;
+  height: auto;
 }
