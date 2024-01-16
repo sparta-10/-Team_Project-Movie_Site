@@ -81,7 +81,7 @@ window.onload = async function () {
   const movieTitleContent = document.getElementById("modal-title"); // 제목
   movieTitleContent.textContent = `${dictionary(receivedData).title}`;
   const releaseDateContent = document.querySelector("#release_date"); // 개봉일
-  releaseDateContent.textContent = `개봉일 : ${dictionary(receivedData).release_date}`;
+  releaseDateContent.textContent = `개봉일 : ${transformDateFormat(dictionary(receivedData).release_date)}`;
   const movieGenre = document.querySelector("#genreIds"); // 장르
   movieGenre.textContent = `장르 : ${receivedGenre}`;
   const movieImg = document.getElementById("movie-img"); // 이미지
@@ -147,3 +147,9 @@ window.onload = async function () {
     })
   );
 };
+
+// 개봉일 날짜 형식 바꾸는 함수
+function transformDateFormat(date) {
+  const splitDate = date.split("-");
+  return splitDate.join(".");
+}
