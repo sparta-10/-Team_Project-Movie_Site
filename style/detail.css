@@ -25,10 +25,11 @@ body {
 
 .modal-header {
   max-width: 880px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
   display: flex;
-  flex-direction: row-reverse
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .modal-header h1 {
@@ -95,7 +96,7 @@ body {
 }
 
 .reviewForm {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
@@ -120,7 +121,7 @@ body {
 
 input,
 textarea {
-  width: 300px;
+  width: 75%;
   box-sizing: border-box;
   min-height: 30px;
   padding: 10px;
@@ -140,7 +141,7 @@ textarea {
 }
 
 #reviewList {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 20px;
