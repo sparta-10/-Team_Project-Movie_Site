@@ -45,14 +45,14 @@ async function fetchCredits() {
 
 window.onload = async function () {
   // window 시작하자마자
+  await fetchMovies();
+
   let urlParams = new URLSearchParams(window.location.search);
   let receivedData = urlParams.get("data"); // movie.js에 href html?data=${movid.id}라고 저장해두었어서 ${movid.id}를 receivedData에 할당
   console.log(receivedData); // 클릭한 id ex.278
 
   let receivedGenre = urlParams.get("genreList");
   console.log(receivedGenre); // 클릭한 영화의 장르
-
-  await fetchMovies();
 
   const movies = getMovies();
   // const genres = getGenres();
@@ -92,8 +92,6 @@ window.onload = async function () {
   movieAverage.textContent = `평점 : ${dictionary(receivedData).average.toFixed(1)}`;
   const movieOverview = document.getElementById("overview"); // 줄거리
   movieOverview.textContent = `줄거리 : ${dictionary(receivedData).overview}`;
-  const movieActor = document.getElementById("actor"); // 배우
-  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(", ")}`;
   const movieActorImgContainer = document.getElementById("actor-img-container"); // 배우 이미지
   movieActorImgContainer.innerHTML = ""; // 이전 이미지 제거
   slicedCast.forEach((actor) => {
@@ -103,6 +101,10 @@ window.onload = async function () {
     actorImg.classList.add("actor-img");
     movieActorImgContainer.appendChild(actorImg);
   });
+  const movieActor = document.getElementById("actor"); // 배우명
+  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(` | `)}`;
+  const movieCharacter = document.getElementById("character"); // 배역명
+  movieCharacter.textContent = `( ${slicedCast.map((actor) => actor.character).join(` | `)} )`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
