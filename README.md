@@ -16,12 +16,13 @@ TMDB API를 사용하여 영화를 소개하고 검색 및 각 영화에 대한 
 
 ## 💻 개발환경
 - Version : Javascript
+- <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScriipt-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="Html" src ="https://img.shields.io/badge/HTML-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/>
 
 
 ## 📌 주요 기능
 - 영화 검색 기능.
-- 영화 정렬 기능. (제목순, 별점순, 최신순, 오래된순)
 - 검색 입력값 유효성 검사 기능.
+- 영화 정렬 기능. (제목순, 별점순, 최신순, 오래된순)
 - 영화 목록 UI 토글 기능.
 - 영화 상세페이지에서 리뷰 작성 기능.
 - 리뷰 입럭값 유효성 검사 기능.
