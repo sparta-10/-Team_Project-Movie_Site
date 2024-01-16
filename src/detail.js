@@ -102,9 +102,9 @@ window.onload = async function () {
     movieActorImgContainer.appendChild(actorImg);
   });
   const movieActor = document.getElementById("actor"); // 배우명
-  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(` \t `)}`;
+  movieActor.textContent = `${slicedCast.map((actor) => actor.name).join(` | `)}`;
   const movieCharacter = document.getElementById("character"); // 배역명
-  movieCharacter.textContent = `${slicedCast.map((actor) => actor.character).join(` \t `)}`;
+  movieCharacter.textContent = `${slicedCast.map((actor) => actor.character).join(` | `)}`;
 
   // ---------------------------------------------------여기서부터 리뷰 ------------------------------------------------------------//
   const title = dictionary(receivedData).title;
