@@ -3,6 +3,7 @@ Movie Collection
 
 ## 👩‍💻 프로젝트 소개
 TMDB API를 사용하여 영화를 소개하고 검색 및 각 영화에 대한 리뷰를 작성 할 수 있는 사이트 입니다.
+- https://www.notion.so/1-10-7040c8457c2e4df4b77f746fdd3512c2
 
 ## ⏲️ 개발 기간
 - 2024.01.10(수) ~ 2024.01.15(월)
@@ -15,8 +16,9 @@ TMDB API를 사용하여 영화를 소개하고 검색 및 각 영화에 대한 
 
 
 ## 💻 개발환경
-- Version : Javascript
 - <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScriipt-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="Html" src ="https://img.shields.io/badge/HTML-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/>
+- Github
+- VScode
 
 
 ## 📌 주요 기능
