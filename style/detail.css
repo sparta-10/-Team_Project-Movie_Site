@@ -25,14 +25,15 @@ body {
 
 .modal-header {
   max-width: 880px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .modal-header h1 {
-  margin: 30px auto;
+  margin: 10px auto;
   text-align: center;
   color: #e8344e;
   font-size: 80px;
@@ -140,13 +141,13 @@ h3 {
   margin: 20px auto;
 }
 
-.actorName h3 {
+#actor {
   margin-bottom: 00px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .reviewForm {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 30px;
@@ -180,7 +181,7 @@ h3 {
 
 input,
 textarea {
-  width: 300px;
+  width: 75%;
   box-sizing: border-box;
   min-height: 30px;
   padding: 10px;
@@ -200,7 +201,7 @@ textarea {
 }
 
 #reviewList {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 20px;
