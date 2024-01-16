@@ -11,18 +11,11 @@
   font-weight: 400 500 600 700;
   font-style: normal;
 }
+
 body {
   background-color: white !important;
 }
 
-/* #modal {
-  position: fixed;
-  background-color: rgb(255, 255, 255);
-  width: 100vw;
-  height: 100vh;
-  z-index: 99; 
-} */
-/* 디테일 페이지에서 리뷰 부분이 안보여서 잠시 임시로 주석처리 했습니다! */
 #modalbtn {
   height: 50px;
   width: 100%;
@@ -31,8 +24,8 @@ body {
 }
 
 .modal-header {
-  width: 1080px;
-  margin: 0 auto;
+  max-width: 1080px;
+  margin: 30px auto;
   position: relative;
 }
 .modal-header h1 {
@@ -51,34 +44,48 @@ body {
   background: none;
   border: none;
 }
-#modal-closebtn i {
-  font-size: 26px;
-}
+
 #modal .modal-main {
   display: flex;
-  width: 1080px;
-  margin: 0 auto;
-  height: 700px;
+  flex-wrap: wrap;
+  max-width: 1080px;
+  margin: 50px auto;
+  padding: 0 20px;
   font-family: "Pretendard-Regular" !important;
 }
-#modal .modal-main .movie-info {
-  width: 600px;
-  height: 700px;
+
+.movie-poster {
+  max-width: 350px;
+  max-height: 500px;
 }
-#modal .modal-main .movie-poster {
-  width: 480px;
-  height: 700px;
+
+#movie-img {
+  max-width: 100%;
+  max-height: 100%;
+  flex: 0 0 auto;
 }
-#modal .modal-main .movie-poster img {
-  display: block;
-  width: 90%;
-  height: 90%;
-  border-radius: 8px;
+
+.movie-info {
+  font-size: 18px;
+  padding: 15px 30px;
+  max-width: calc(100% - 10px);
+  max-height: 100%;
+  flex: 1 0 40%;
+}
+
+.movie-info h1,h2,h3 {
+  margin-bottom: 10px;
+}
+
+#overview {
+  line-height: 120%;
 }
 
 .reviewForm {
   max-width: 400px;
   margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
   font-family: "Pretendard-Regular";
   text-align: center;
 }
@@ -109,7 +116,7 @@ textarea {
 
 .submitReviewButton {
   width: 150px;
-  margin: 30px auto;
+  margin: 20px auto;
   font-size: 20px;
   padding: 10px;
   font-family: "Pretendard-Regular";
@@ -120,7 +127,7 @@ textarea {
 }
 
 #reviewList {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   text-align: left;
@@ -130,7 +137,7 @@ textarea {
 }
 
 #reviewList div {
-  width: 400px;
+  max-width: 100%;
   height: fit-content;
   padding: 20px;
   margin-bottom: 10px;
@@ -159,7 +166,7 @@ button:hover {
   cursor: pointer;
 }
 
-#reviewList button:active {
+#reviewList button:hover {
   background-color: #151515;
   color: white;
 }
