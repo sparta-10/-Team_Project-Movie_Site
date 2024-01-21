@@ -10,9 +10,9 @@ import {
 } from "./movie.js";
 import { setSearch } from "./search.js";
 
-document.addEventListener("DOMContentLoaded", handleContectLoaded);
+document.addEventListener("DOMContentLoaded", handleContactLoaded);
 
-function handleContectLoaded() {
+function handleContactLoaded() {
   renderMovies(); // 페이지 로드 시 renderMovies 함수 호출
   setSearch(); // 페이지 로드 시 setSearch 함수 호출
   setToggleMovies();
