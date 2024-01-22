@@ -1,40 +1,41 @@
 # 사이트명
-Movie Collection
+JiYoung's To Do List
+
 
 ## 👩‍💻 프로젝트 소개
-TMDB API를 사용하여 영화를 소개하고 검색 및 각 영화에 대한 리뷰를 작성 할 수 있는 사이트 입니다.
-- https://www.notion.so/1-10-7040c8457c2e4df4b77f746fdd3512c2
+리액트 hook인 useState를 사용하여 todolist를 작성할 수 있는 사이트 입니다.
+
+![image](https://github.com/sparta-10/-Team_Project-Movie_Site/assets/154482077/620aae26-8556-435a-a6d7-fc452e0281c7)
+
 
 ## ⏲️ 개발 기간
-- 2024.01.10(수) ~ 2024.01.15(월)
-
-
-## 🧑‍🤝‍🧑 개발자 소개
-- 장지영 : API를 이용하여 데이터 가져오기, 메인페이지 추가 기능 구현, 메인페이지 CSS
-- 황인정 : 메인페이지와 상세페이지 간 데이터 호환, 리뷰 저장/작성/전시 기능 구현
-- 최희라 : 리뷰 작성/수정/삭제 기능 구현, CSS 수정
+- 2024.01.22(월)
 
 
 ## 💻 개발환경
-- <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScriipt-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="Html" src ="https://img.shields.io/badge/HTML-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/>
+- <img alt="React" src ="https://img.shields.io/badge/React-444444.svg?&style=for-the-badge&logo=React&logoColor=react"/> <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScriipt-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="Html" src ="https://img.shields.io/badge/HTML-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/>
 - Github
 - VScode
 
 
 ## 📌 주요 기능
-- 영화 검색 기능.
-- 검색 입력값 유효성 검사 기능.
-- 영화 정렬 기능. (제목순, 별점순, 최신순, 오래된순)
-- 영화 목록 UI 토글 기능.
-- 영화 정보 상세페이지로 이동 기능.
-- 영화 상세페이지에서 리뷰 작성 기능.
-- 리뷰 입럭값 유효성 검사 기능.
-- 로컬스토리지에 저장한 리뷰 데이터 수정 및 삭제 기능.
-- 리뷰 수정/삭제 유효성 검사 기능.
+- Todo 추가 하기
+- Todo 삭제 하기
+- Todo 완료 상태 변경하기 (완료 ↔ 진행중)
 
-## ✒️ API
-- API 링크
-    - 영화 정보 : https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1 ~ https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=12
-    - 영화 장르 : https://api.themoviedb.org/3/genre/movie/list?language=ko-KR
-    - 영화 배우 정보 : https://api.themoviedb.org/3/movie/${movie.id}/credits?language=ko-KR
-    - 상영 시간 정보 : https://api.themoviedb.org/3/movie/${movie.id}?language=ko-KR
+
+## ✔️ 필수 요구 사항
+- 제목과 내용을 입력하고, [추가하기] 버튼을 클릭하면 Working에 새로운 Todo가 추가되고 제목 input과 내용 input은 다시 빈 값으로 바뀌도록 구성
+- Todo의 isDone 상태가 true이면, 상태 버튼의 라벨을 취소, isDone이 false 이면 라벨을 완료 로 조건부 렌더링
+- Todo의 상태가 Working 이면 위쪽에 위치하고, Done이면 아래쪽에 위치하도록 구현
+- Layout의 최대 넓이는 1200px, 최소 넓이는 800px로 제한하고, 전체 화면의 가운데로 정렬
+- 컴포넌트 분리
+
+
+## 🧩 컴포넌트
+- App
+- component
+    - Layout : Header & Footer
+    -  Form : Todolist 추가
+    -  List : 상태 별 Todolist 분
+        - Todo : Todolist 삭제 및 상태 변경 (완료 ↔ 진행중)
