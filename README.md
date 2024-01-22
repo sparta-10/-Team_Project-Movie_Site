@@ -39,3 +39,15 @@ JiYoung's To Do List
     -  Form : Todolist 추가
     -  List : 상태 별 Todolist 분
         - Todo : Todolist 삭제 및 상태 변경 (완료 ↔ 진행중)
+     
+
+## Create React App 만들기 시작 위한 방법
+### 프로젝트 생성하기
+yarn create react-app '프로젝트 명'
+
+### 프로젝트 실행하기
+#### 프로젝트 폴더로 이동하기
+cd '프로젝트 명'
+
+#### 프로젝트 실행하기
+yarn start
